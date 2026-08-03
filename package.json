@@ -19,7 +19,13 @@
     "@angular/platform-server": "^22.1.0",
     "@angular/router": "^22.1.0",
     "@angular/ssr": "^22.1.2",
+    "@supabase/supabase-js": "^2.112.0",
+    "@vercel/speed-insights": "^2.0.0",
     "express": "^5.1.0",
+    "ngx-quill": "^31.0.1",
+    "primeicons": "^8.0.0",
+    "primeng": "^22.0.0",
+    "quill": "^2.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
