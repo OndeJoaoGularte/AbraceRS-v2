@@ -1,1 +1,61 @@
-<p>header works!</p>
+<header [class.scrolled]="isScrolled()">
+
+  <!-- Barra Superior de Contatos -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="contact-info">
+        <span>
+          <i class="fa-solid fa-phone"></i>
+          (51) 99380-1665
+        </span>
+        <span class="email-info">
+          <i class="fa-solid fa-envelope"></i>
+          institutoabracers@gmail.com
+        </span>
+      </div>
+
+      <div class="social-icons">
+        <a href="https://www.instagram.com/institutoabracers/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@institutoabracers" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://x.com/InstAbraceRS" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.youtube.com/@AbraceRS" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegação Principal -->
+  <nav class="main-nav">
+    <div class="container nav-container">
+
+      <a class="nav-logo" routerLink="/" (click)="closeMenu()">
+        <img src="assets/images/abracelogo.png" alt="Logo Instituto AbraceRS" height="50" />
+      </a>
+
+      <div class="nav-main-group" [class.active]="isMenuOpen()">
+        <ul class="nav-links">
+          <li><a routerLink="/home" routerLinkActive="active-link" (click)="closeMenu()">Home</a></li>
+          <li><a routerLink="/somos" routerLinkActive="active-link" (click)="closeMenu()">Quem Somos</a></li>
+          <li><a routerLink="/atuamos" routerLinkActive="active-link" (click)="closeMenu()">Como Atuamos</a></li>
+          <li><a routerLink="/blog" routerLinkActive="active-link" (click)="closeMenu()">Blog</a></li>
+          <li><a routerLink="/junte" routerLinkActive="active-link" (click)="closeMenu()">Junte-se a Nós</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="nav-cta" (click)="openVakinha()">Doar</button>
+
+
+          @if (authService.isLoggedIn()) {
+          <button (click)="onSignOut()" class="btn-signout">Sair</button>
+          }
+        </div>
+      </div>
+
+      <button class="hamburger-menu" (click)="toggleMenu()" [class.active]="isMenuOpen()" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+</header>
