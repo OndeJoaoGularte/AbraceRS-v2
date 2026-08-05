@@ -22,8 +22,8 @@
   color: var(--cor-texto-claro, #fff);
   height: 40px;
   transition:
-    height 0.4s ease,
-    opacity 0.3s ease;
+    height 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
   overflow: hidden;
 
   .top-bar-content {

@@ -18,9 +18,13 @@ export class Header {
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    const scrolled = window.scrollY > 50;
-    if (this.isScrolled() !== scrolled) {
-      this.isScrolled.set(scrolled);
+    const currentScroll = window.scrollY;
+
+    if (!this.isScrolled() && currentScroll > 60) {
+      this.isScrolled.set(true);
+    } 
+    else if (this.isScrolled() && currentScroll < 10) {
+      this.isScrolled.set(false);
     }
   }
 
