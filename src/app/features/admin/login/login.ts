@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Auth } from '../../../core/services/auth/auth';
+import { AuthService } from '../../../core/services/auth/auth';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import { Auth } from '../../../core/services/auth/auth';
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
-  private authService = inject(Auth);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
   isLoading = signal<boolean>(false);

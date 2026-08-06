@@ -1,6 +1,6 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { Auth } from '../../../core/services/auth/auth';
+import { AuthService } from '../../../core/services/auth/auth';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ import { Auth } from '../../../core/services/auth/auth';
   styleUrl: './header.scss',
 })
 export class Header {
-  public authService = inject(Auth);
+  public authService = inject(AuthService);
   private router = inject(Router);
 
   isMenuOpen = signal<boolean>(false);

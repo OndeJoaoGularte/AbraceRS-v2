@@ -5,7 +5,7 @@ import { SupabaseService } from '../supabase/supabase';
 @Injectable({
   providedIn: 'root'
 })
-export class Auth {
+export class AuthService {
   private supabaseService = inject(SupabaseService);
   private supabase = this.supabaseService.client;
 
