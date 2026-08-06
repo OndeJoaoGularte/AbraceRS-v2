@@ -7,7 +7,7 @@ import { ProjectsService } from '../../core/services/projects/projects';
 import { AuthService } from '../../core/services/auth/auth';
 
 import { HeroComponent } from './components/hero/hero';
-//import { AboutComponent } from './components/about/about';
+import { AboutComponent } from './components/about/about';
 //import { ProjectsComponent } from './components/projects/projects';
 //import { AssociateComponent } from './components/associate/associate';
 //import { SupportersComponent } from './components/supporters/supporters';
@@ -16,7 +16,7 @@ import { HeroComponent } from './components/hero/hero';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterModule, HeroComponent],
+  imports: [CommonModule, RouterModule, HeroComponent, AboutComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

@@ -6,7 +6,7 @@
 }
 
 .breakout-section {
-  padding: 6rem 0;
+  padding: 3rem 0;
   background-color: var(--cor-fundo);
 }
 
@@ -16,8 +16,8 @@
 
 .breakout-title {
   font-family: var(--fonte-principal);
-  color: var(--cor-primaria);
-  font-weight: 700;
+  color: var(--cor-secundaria);
+  font-weight: 800;
   line-height: 1.2;
   margin: 0;
   
@@ -27,7 +27,7 @@
 .breakout-highlight {
   font-family: var(--fonte-principal);
   font-weight: 900;
-  color: var(--cor-primaria);
+  color: var(--cor-secundaria);
   
   font-size: clamp(2.8rem, 8vw, 4.5rem); 
   display: block;
