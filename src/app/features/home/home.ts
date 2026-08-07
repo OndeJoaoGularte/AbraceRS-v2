@@ -4,26 +4,38 @@ import { RouterModule } from '@angular/router';
 
 import { ProjectsService } from '../../core/services/projects/projects';
 //import { Posts } from '../../services/posts/posts';
+import { SupportersService } from '../../core/services/supporters/supporters';
 import { AuthService } from '../../core/services/auth/auth';
 
 import { HeroComponent } from './components/hero/hero';
 import { AboutComponent } from './components/about/about';
 //import { ProjectsComponent } from './components/projects/projects';
-//import { AssociateComponent } from './components/associate/associate';
-//import { SupportersComponent } from './components/supporters/supporters';
+import { AssociateComponent } from './components/associate/associate';
+import { Supporter, SupportersComponent } from './components/supporters/supporters';
 //import { DonateComponent } from './components/donate/donate';
 //import { PostsComponent } from './components/posts/posts';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterModule, HeroComponent, AboutComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HeroComponent,
+    AboutComponent,
+    AssociateComponent,
+    SupportersComponent,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class HomeComponent implements OnInit {
   private projectsService = inject(ProjectsService);
   //private postsService = inject(Posts);
+  private supportersService = inject(SupportersService);
   private authService = inject(AuthService);
+
+  masterSupporters = signal<Supporter[]>([]);
+  standardSupporters = signal<Supporter[]>([]);
 
   isLoading = signal<boolean>(true);
   featuredProject = signal<any>(null);
@@ -42,8 +54,9 @@ export class HomeComponent implements OnInit {
   async loadInitialData(): Promise<void> {
     this.isLoading.set(true);
 
-    const [projects] = await Promise.all([
+    const [projects, supporters] = await Promise.all([
       this.projectsService.getLatestProjects(3),
+      this.supportersService.getActiveSupporters(),
       this.loadMorePosts(),
     ]);
 
@@ -51,6 +64,9 @@ export class HomeComponent implements OnInit {
       this.featuredProject.set(projects[0]);
       this.secondaryProjects.set(projects.slice(1));
     }
+
+    this.masterSupporters.set(supporters.filter((s) => s.tier === 'master'));
+    this.standardSupporters.set(supporters.filter((s) => s.tier === 'standard'));
 
     this.isLoading.set(false);
   }

@@ -1,1 +1,35 @@
-<p>supporters works!</p>
+<section class="supporters-section">
+  <div class="container">
+    
+    @if (masters().length > 0) {
+      <h4 class="tier-title">Apoiadores Master</h4>
+      <div class="supporters-grid master">
+        @for (supporter of masters(); track supporter.id) {
+          <a [href]="supporter.link_url" target="_blank" rel="noopener noreferrer" class="supporter-link" [title]="'Visitar o site de ' + supporter.name">
+            <div class="supporter-logo">
+              <img [src]="supporter.image_url" [alt]="'Logo ' + supporter.name">
+            </div>
+          </a>
+        }
+      </div>
+      
+      @if (standards().length > 0) {
+        <hr class="divider">
+      }
+    }
+
+    @if (standards().length > 0) {
+      <h4 class="tier-title">Apoiadores</h4>
+      <div class="supporters-grid">
+        @for (supporter of standards(); track supporter.id) {
+          <a [href]="supporter.link_url" target="_blank" rel="noopener noreferrer" class="supporter-link" [title]="'Visitar ' + supporter.name">
+            <div class="supporter-logo">
+              <img [src]="supporter.image_url" [alt]="'Logo ' + supporter.name">
+            </div>
+          </a>
+        }
+      </div>
+    }
+
+  </div>
+</section>

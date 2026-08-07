@@ -1,5 +1,5 @@
 <div class="home-page">
-  
+
   <!-- Banner Inicial -->
   <app-hero></app-hero>
 
@@ -25,11 +25,13 @@
   }
   -->
 
-  <!--
+  <!-- Seção de convite para se voluntariar (ou associar) -->
   <app-associate></app-associate>
-  <app-supporters></app-supporters>
-  -->
-  
+
+  <!-- Seção de Apoiadores do Instituto -->
+  <app-supporters [masters]="masterSupporters()" [standards]="standardSupporters()">
+  </app-supporters>
+
   <!-- Seção de Citação -->
   <section class="quote-section">
     <div class="container">
@@ -47,7 +49,7 @@
       </p>
     </div>
   </section>
-  
+
 
   <!-- <app-donate></app-donate> -->
   <!--

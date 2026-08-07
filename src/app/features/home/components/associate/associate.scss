@@ -1,0 +1,128 @@
+.associate-section {
+  padding: 3rem 0;
+  background-color: var(--cor-fundo);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.associate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.text-column {
+  .title {
+    font-family: var(--fonte-principal);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--cor-texto);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .description {
+    font-family: var(--fonte-secundaria);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-outline {
+    display: inline-block;
+    text-decoration: none;
+    font-family: var(--fonte-principal);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cor-primaria);
+    background-color: transparent;
+    border: 2px solid var(--cor-primaria);
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--cor-primaria);
+      color: var(--cor-texto-claro, #ffffff);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(2, 117, 129, 0.2);
+    }
+  }
+}
+
+.cards-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.selection-card {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background-color: #ffffff;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--cor-primaria);
+    transform: translateX(10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  .icon-wrapper {
+    font-size: 2.5rem;
+    color: var(--cor-secundaria);
+    margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-content {
+    .card-title {
+      font-family: var(--fonte-principal);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--cor-texto);
+      margin: 0 0 0.25rem 0;
+    }
+
+    .card-text {
+      font-family: var(--fonte-secundaria);
+      font-size: 0.95rem;
+      color: #64748b;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .associate-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .text-column .btn-outline {
+    margin-bottom: 1rem;
+  }
+
+  .selection-card {
+    text-align: left;
+    padding: 1.5rem;
+    
+    &:hover {
+      transform: translateY(-4px); 
+    }
+  }
+}

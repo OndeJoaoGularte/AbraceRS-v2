@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+
+export interface Supporter {
+  id?: number;
+  name: string;
+  image_url: string;
+  link_url: string;
+  tier: 'master' | 'standard';
+}
 
 @Component({
   selector: 'app-supporters',
@@ -6,6 +14,7 @@ import { Component } from '@angular/core';
   templateUrl: './supporters.html',
   styleUrl: './supporters.scss',
 })
-export class Supporters {
-
+export class SupportersComponent {
+  masters = input<Supporter[]>([]);
+  standards = input<Supporter[]>([]);
 }

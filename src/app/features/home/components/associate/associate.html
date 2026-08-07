@@ -1,1 +1,39 @@
-<p>associate works!</p>
+<section class="associate-section">
+  <div class="container associate-grid">
+    
+    <div class="text-column">
+      <h2 class="title">Precisamos do seu apoio.</h2>
+      <p class="description">
+        Sua ajuda é o que nos move. Seja contribuindo como associado(a) para fortalecer nossa estrutura 
+        ou doando seu tempo como voluntário(a) na linha de frente, você é parte fundamental da reconstrução. 
+        Escolha como quer abraçar essa causa conosco.
+      </p>
+      <a routerLink="/junte-se" class="btn-outline">Ver mais detalhes</a>
+    </div>
+
+    <div class="cards-column">
+      
+      <a routerLink="/junte-se" [queryParams]="{ form: 'associate' }" class="selection-card">
+        <div class="icon-wrapper">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="card-content">
+          <h5 class="card-title">Quero me Associar</h5>
+          <p class="card-text">Fortaleça nossa causa de forma contínua.</p>
+        </div>
+      </a>
+
+      <a routerLink="/junte-se" [queryParams]="{ form: 'volunteer' }" class="selection-card">
+        <div class="icon-wrapper">
+          <i class="fas fa-hands-helping"></i>
+        </div>
+        <div class="card-content">
+          <h5 class="card-title">Quero ser Voluntário(a)</h5>
+          <p class="card-text">Doe seu tempo e suas habilidades na linha de frente.</p>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
