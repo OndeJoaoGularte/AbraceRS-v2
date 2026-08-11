@@ -17,7 +17,7 @@ export interface Post {
 @Injectable({
   providedIn: 'root',
 })
-export class Posts {
+export class PostsService {
   private supabaseService = inject(SupabaseService);
   private supabase = this.supabaseService.client;
   

@@ -1,1 +1,43 @@
-<p>posts works!</p>
+<section class="posts-section">
+  <div class="container">
+    
+    <div class="section-header">
+      <h2 class="title">Fique por dentro das nossas atualizações!</h2>
+    </div>
+
+    <div class="posts-grid">
+      @for (post of posts(); track post.id) {
+        
+        <a [routerLink]="['/post', post.id]" class="post-card">
+          <div class="img-wrapper">
+            <img [src]="post.image_url" [alt]="post.title" class="card-img">
+          </div>
+          
+          <div class="card-body">
+            <p class="card-meta">{{ post.published_at | date:'dd/MM/yyyy' }}</p>
+            <h5 class="card-title">{{ post.title }}</h5>
+            
+            @if (post.summary) {
+              <p class="card-summary">{{ post.summary }}</p>
+            }
+          </div>
+        </a>
+
+      } @empty {
+        <div class="empty-state">
+          <i class="fas fa-newspaper"></i>
+          <p>Nenhuma atualização publicada ainda. Volte em breve!</p>
+        </div>
+      }
+    </div>
+
+    @if (!allLoaded() && posts().length > 0) {
+      <div class="load-more-container">
+        <button (click)="loadMore()" class="btn-outline">
+          Carregar Mais Postagens
+        </button>
+      </div>
+    }
+
+  </div>
+</section>

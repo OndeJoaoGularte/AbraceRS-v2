@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ProjectsService } from '../../core/services/projects/projects';
-//import { Posts } from '../../services/posts/posts';
+import { PostsService } from '../../core/services/posts/posts';
 import { SupportersService } from '../../core/services/supporters/supporters';
 import { AuthService } from '../../core/services/auth/auth';
 
@@ -13,7 +13,7 @@ import { ProjectsComponent } from './components/projects/projects';
 import { AssociateComponent } from './components/associate/associate';
 import { Supporter, SupportersComponent } from './components/supporters/supporters';
 import { DonateComponent } from './components/donate/donate';
-//import { PostsComponent } from './components/posts/posts';
+import { PostsComponent } from './components/posts/posts';
 
 @Component({
   selector: 'app-home',
@@ -25,14 +25,15 @@ import { DonateComponent } from './components/donate/donate';
     ProjectsComponent,
     AssociateComponent,
     SupportersComponent,
-    DonateComponent
+    DonateComponent,
+    PostsComponent,
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class HomeComponent implements OnInit {
   private projectsService = inject(ProjectsService);
-  //private postsService = inject(Posts);
+  private postsService = inject(PostsService);
   private supportersService = inject(SupportersService);
   private authService = inject(AuthService);
 
@@ -75,15 +76,15 @@ export class HomeComponent implements OnInit {
 
   async loadMorePosts(): Promise<void> {
     const isUserAdmin = this.authService.isLoggedIn();
-    //const { data, count } = await this.postsService.getPaginatedPosts(
-    //  this.currentPage,
-    //  this.postsPerPage,
-    //  isUserAdmin,
-    //);
+    const { data, count } = await this.postsService.getPaginatedPosts(
+      this.currentPage,
+      this.postsPerPage,
+      isUserAdmin,
+    );
 
-    //this.latestPosts.update((posts) => [...posts, ...data]);
-    //this.totalPosts = count;
-    //this.currentPage++;
+    this.latestPosts.update((posts) => [...posts, ...data]);
+    this.totalPosts = count;
+    this.currentPage++;
 
     if (this.latestPosts().length >= this.totalPosts) {
       this.allPostsLoaded.set(true);
