@@ -1,1 +1,52 @@
-<p>projects works!</p>
+<section class="projects-section">
+  <div class="container">
+    
+    <div class="section-header">
+      <h2 class="title">Buscamos meios para a reconstrução.</h2>
+      <p class="subtitle">Acompanhe nossas iniciativas que estão, neste momento, reconstruindo o futuro.</p>
+    </div>
+
+    @if (featured()) {
+      <div class="projects-grid">
+        
+        <a [routerLink]="['/project', featured().id]" class="card featured-card">
+          <div class="img-wrapper">
+            <img [src]="featured().image_url" [alt]="featured().name" class="card-img">
+          </div>
+          <div class="card-body">
+            <span class="badge">Em Destaque</span>
+            <h3 class="card-title">{{ featured().name }}</h3>
+            <p class="card-text">{{ featured().description }}</p>
+            <span class="read-more">Ler mais <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        @if (secondary().length > 0) {
+          <a [routerLink]="['/project', secondary()[0].id]" class="card secondary-card">
+            <div class="img-wrapper">
+              <img [src]="secondary()[0].image_url" [alt]="secondary()[0].name" class="card-img">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ secondary()[0].name }}</h5>
+              <p class="card-text">{{ secondary()[0].description }}</p>
+            </div>
+          </a>
+        }
+
+        @if (secondary().length > 1) {
+          <a [routerLink]="['/project', secondary()[1].id]" class="card secondary-card">
+            <div class="img-wrapper">
+              <img [src]="secondary()[1].image_url" [alt]="secondary()[1].name" class="card-img">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ secondary()[1].name }}</h5>
+              <p class="card-text">{{ secondary()[1].description }}</p>
+            </div>
+          </a>
+        }
+
+      </div>
+    }
+    
+  </div>
+</section>

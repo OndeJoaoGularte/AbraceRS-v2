@@ -9,10 +9,10 @@ import { AuthService } from '../../core/services/auth/auth';
 
 import { HeroComponent } from './components/hero/hero';
 import { AboutComponent } from './components/about/about';
-//import { ProjectsComponent } from './components/projects/projects';
+import { ProjectsComponent } from './components/projects/projects';
 import { AssociateComponent } from './components/associate/associate';
 import { Supporter, SupportersComponent } from './components/supporters/supporters';
-//import { DonateComponent } from './components/donate/donate';
+import { DonateComponent } from './components/donate/donate';
 //import { PostsComponent } from './components/posts/posts';
 
 @Component({
@@ -22,8 +22,10 @@ import { Supporter, SupportersComponent } from './components/supporters/supporte
     RouterModule,
     HeroComponent,
     AboutComponent,
+    ProjectsComponent,
     AssociateComponent,
     SupportersComponent,
+    DonateComponent
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',

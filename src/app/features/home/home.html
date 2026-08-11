@@ -16,14 +16,14 @@
   <!-- Seção Sobre Nós -->
   <app-about></app-about>
 
-  <!--
+  <!-- Seção de Projetos -->
   @if (!isLoading()) {
     <app-projects 
       [featured]="featuredProject()" 
       [secondary]="secondaryProjects()">
     </app-projects>
   }
-  -->
+  
 
   <!-- Seção de convite para se voluntariar (ou associar) -->
   <app-associate></app-associate>
@@ -40,18 +40,8 @@
   </section>
 
   <!-- Seção de Call-to-Action -->
-  <section class="breakout-section">
-    <div class="container">
-      <p class="breakout-subtitle">
-        A reconstrução é uma maratona, não uma corrida. <br>
-        <strong class="text-primary-highlight">Nos ajude a continuar ajudando</strong> <br>
-        e faça parte desta jornada.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- <app-donate></app-donate> -->
+  <app-donate></app-donate>
+  
   <!--
   <app-posts 
     [posts]="latestPosts()" 

@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './donate.html',
   styleUrl: './donate.scss',
 })
-export class Donate {}
+export class DonateComponent {}

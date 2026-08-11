@@ -1,0 +1,247 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.breakout-section {
+  padding-top: 3rem;
+  background-color: var(--cor-fundo-claro);
+}
+
+.final-breakout {
+  padding: 5rem 0 7rem 0; 
+}
+
+.breakout-title {
+  font-family: var(--fonte-principal);
+  color: var(--cor-secundaria);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  
+  font-size: clamp(2rem, 5vw, 3rem); 
+}
+
+.breakout-highlight {
+  font-family: var(--fonte-principal);
+  font-weight: 900;
+  color: var(--cor-secundaria);
+  
+  font-size: clamp(2.8rem, 8vw, 4.5rem); 
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.breakout-subtitle {
+  font-family: var(--fonte-secundaria);
+  color: var(--cor-texto);
+  line-height: 1.6;
+  margin: 0;
+  
+  font-size: clamp(1.25rem, 3vw, 1.75rem); 
+}
+
+.text-primary-highlight {
+  color: var(--cor-primaria);
+  font-weight: 800;
+}
+
+.donate-section {
+  padding: 4rem 0 6rem 0;
+  background-color: var(--cor-fundo-claro);
+}
+
+.donate-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.donate-card {
+  width: 100%;
+  background-color: var(--cor-fundo);
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.pix-card {
+  max-width: 850px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3rem;
+  gap: 3rem;
+
+  .pix-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-right: 1px solid #e2e8f0;
+    padding-right: 3rem;
+  }
+
+  .pix-right {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 0.5rem;
+  }
+
+  .card-title {
+    font-family: var(--fonte-principal);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .qr-img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 12px;
+    border: 4px solid #f8fafc;
+  }
+
+  .instruction-text {
+    font-family: var(--fonte-secundaria);
+    color: var(--cor-texto);
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+
+    &.mt-custom {
+      margin-top: 1.5rem;
+    }
+  }
+
+  .pix-key-box {
+    background-color: #ffffff;
+    color: var(--cor-primaria);
+    padding: 0.85rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    font-family: var(--fonte-secundaria);
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .divider {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 2rem 0 0 0;
+  }
+
+  .bank-details {
+    font-family: var(--fonte-secundaria);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #64748b;
+    margin: 0;
+  }
+}
+
+.vakinha-card {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2.5rem;
+  justify-content: space-between;
+
+  .card-icon {
+    font-size: 2.5rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 0.5rem;
+  }
+
+  .card-title {
+    font-family: var(--fonte-principal);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .vakinha-img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .vakinha-description {
+    font-family: var(--fonte-secundaria);
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 2rem;
+  }
+
+  .btn-vakinha {
+    display: inline-block;
+    width: 100%;
+    background-color: #22c55e;
+    color: #ffffff;
+    font-family: var(--fonte-principal);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: #16a34a;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .pix-card {
+    flex-direction: column;
+    padding: 2.5rem 1.5rem;
+    gap: 2rem;
+
+    .pix-left {
+      width: 100%;
+      border-right: none;
+      padding-right: 0;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 2rem;
+    }
+
+    .pix-right {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .vakinha-card {
+    padding: 2.5rem 1.5rem;
+  }
+}

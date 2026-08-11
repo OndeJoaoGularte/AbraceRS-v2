@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
-export class Projects {
 
+export class ProjectsComponent {
+  featured = input<any>(null);
+  secondary = input<any[]>([]);
 }
