@@ -1,42 +1,59 @@
 <section class="posts-section">
   <div class="container">
-    
+
     <div class="section-header">
       <h2 class="title">Fique por dentro das nossas atualizações!</h2>
     </div>
 
+    @if (isLoading()) {
+    <div class="posts-grid">
+      @for (i of [1, 2, 3]; track i) {
+      <div class="post-card skeleton-card">
+        <div class="img-wrapper skeleton-box"></div>
+        <div class="card-body">
+          <div class="skeleton-box skeleton-text w-25 mb-3"></div>
+          <div class="skeleton-box skeleton-title w-75"></div>
+          <div class="skeleton-box skeleton-text w-100 mt-4"></div>
+          <div class="skeleton-box skeleton-text w-100"></div>
+        </div>
+      </div>
+      }
+    </div>
+
+    } @else {
     <div class="posts-grid">
       @for (post of posts(); track post.id) {
-        
-        <a [routerLink]="['/post', post.id]" class="post-card">
-          <div class="img-wrapper">
-            <img [src]="post.image_url" [alt]="post.title" class="card-img">
-          </div>
-          
-          <div class="card-body">
-            <p class="card-meta">{{ post.published_at | date:'dd/MM/yyyy' }}</p>
-            <h5 class="card-title">{{ post.title }}</h5>
-            
-            @if (post.summary) {
-              <p class="card-summary">{{ post.summary }}</p>
-            }
-          </div>
-        </a>
+
+      <a [routerLink]="['/post', post.id]" class="post-card">
+        <div class="img-wrapper">
+          <img [src]="post.image_url" [alt]="post.title" class="card-img">
+        </div>
+
+        <div class="card-body">
+          <p class="card-meta">{{ post.published_at | date:'dd/MM/yyyy' }}</p>
+          <h5 class="card-title">{{ post.title }}</h5>
+
+          @if (post.summary) {
+          <p class="card-summary">{{ post.summary }}</p>
+          }
+        </div>
+      </a>
 
       } @empty {
-        <div class="empty-state">
-          <i class="fas fa-newspaper"></i>
-          <p>Nenhuma atualização publicada ainda. Volte em breve!</p>
-        </div>
+      <div class="empty-state">
+        <i class="fas fa-newspaper"></i>
+        <p>Nenhuma atualização publicada ainda. Volte em breve!</p>
+      </div>
       }
     </div>
 
     @if (!allLoaded() && posts().length > 0) {
-      <div class="load-more-container">
-        <button (click)="loadMore()" class="btn-outline">
-          Carregar Mais Postagens
-        </button>
-      </div>
+    <div class="load-more-container">
+      <button (click)="loadMore()" class="btn-outline">
+        Carregar Mais Postagens
+      </button>
+    </div>
+    }
     }
 
   </div>

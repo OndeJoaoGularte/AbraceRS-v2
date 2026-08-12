@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './posts.scss',
 })
 export class PostsComponent {
+  isLoading = input<boolean>(true);
   posts = input<any[]>([]);
   allLoaded = input<boolean>(false);
 

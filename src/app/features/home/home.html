@@ -17,13 +17,9 @@
   <app-about></app-about>
 
   <!-- Seção de Projetos -->
-  @if (!isLoading()) {
-    <app-projects 
-      [featured]="featuredProject()" 
-      [secondary]="secondaryProjects()">
-    </app-projects>
-  }
-  
+  <app-projects [isLoading]="isLoading()" [featured]="featuredProject()" [secondary]="secondaryProjects()">
+  </app-projects>
+
 
   <!-- Seção de convite para se voluntariar (ou associar) -->
   <app-associate></app-associate>
@@ -41,12 +37,9 @@
 
   <!-- Seção de Call-to-Action -->
   <app-donate></app-donate>
-  
+
   <!-- Seção de Posts Recentes -->
-  <app-posts 
-    [posts]="latestPosts()" 
-    [allLoaded]="allPostsLoaded()"
-    (onLoadMore)="loadMorePosts()">
+  <app-posts [isLoading]="isLoading()" [posts]="latestPosts()" [allLoaded]="allPostsLoaded()" (onLoadMore)="loadMorePosts()">
   </app-posts>
 
   <section class="breakout-section final-breakout">
