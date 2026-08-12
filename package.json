@@ -25,13 +25,16 @@
     "@fortawesome/free-regular-svg-icons": "^7.3.0",
     "@fortawesome/free-solid-svg-icons": "^7.3.0",
     "@supabase/supabase-js": "^2.112.0",
+    "@tailwindcss/postcss": "^4.3.3",
     "@vercel/speed-insights": "^2.0.0",
     "express": "^5.1.0",
     "ngx-quill": "^31.0.1",
+    "postcss": "^8.5.26",
     "primeicons": "^8.0.0",
     "primeng": "^22.0.0",
     "quill": "^2.0.3",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^4.3.3",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
