@@ -3,8 +3,11 @@
   --cor-secundaria: #e74c3c;
   --cor-destaque: #ffe156;
   --cor-fundo: #f5f5dc;
+  --cor-neutra: #f5f5dc;
   --cor-fundo-claro: #f9fbfb;
+  --cor-clara: #f9fbfb;
   --cor-texto: #333333;
+  --cor-escura: #333333;
   --cor-texto-claro: #ffffff;
   --fonte-principal: "Zain", sans-serif;
   --fonte-secundaria: "Nunito", sans-serif;
@@ -12,8 +15,8 @@
 
 body {
   font-family: var(--fonte-secundaria);
-  color: var(--cor-texto);
-  background-color: var(--cor-fundo);
+  color: var(--cor-escura);
+  background-color: var(--cor-neutra);
   overflow-x: hidden;
   margin: 0;
   padding: 0;

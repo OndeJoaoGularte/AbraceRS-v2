@@ -1,54 +1,66 @@
-<div class="login-container">
-  <div class="login-card">
+<div class="h-[calc(100vh-70px)] lg:h-[calc(100vh-110px)] flex justify-center items-center bg-linear-to-tr/longer from-primary to-secondary">
+  <div class="w-full max-w-md bg-light rounded-xl py-10 px-8 shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
     
-    <div class="login-header">
-      <img src="assets/images/abracelogo.png" alt="Logo Instituto AbraceRS" class="login-logo">
-      <h3 class="card-title">Acesso Administrativo</h3>
-      <p>Área de Administração do Sistema.</p>
+    <!-- Cabeçalho -->
+    <div class="text-center mb-8">
+      <img src="assets/images/abracelogo.png" alt="Logo Instituto AbraceRS" class="h-20 mx-auto mb-4 transition-transform duration-300 hover:scale-105">
+      <h3 class="text-dark text-2xl font-bold m-0 font-primary">Acesso Administrativo</h3>
+      <p class="text-muted">Área de Administração do Sistema.</p>
     </div>
 
+    <!-- Formulário de Login -->
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
       
-      <div class="form-group">
-        <label for="email" class="form-label">Email</label>
-        <div class="input-wrapper" [class.is-invalid]="isInvalid('email')">
-          <i class="fas fa-envelope"></i>
-          <input type="email" id="email" formControlName="email" placeholder="Digite seu e-mail">
+      <div class="mb-6">
+        <label for="email" class="block mb-2 font-semibold text-dark">Email</label>
+        
+        <div class="relative flex items-center group" [class.is-invalid]="isInvalid('email')">
+          <i class="fas fa-envelope absolute left-4 text-muted transition-colors duration-200 group-[.is-invalid]:text-secondary"></i>
+          <input type="email" id="email" formControlName="email" placeholder="Digite seu e-mail" 
+                 class="w-full py-3 pr-4 pl-10 border border-muted rounded-lg text-base outline-none transition-all duration-200 focus:border-primary focus:ring-2 focus:ring-primary/10 group-[.is-invalid]:border-secondary group-[.is-invalid]:bg-secondary/10">
         </div>
+        
         @if (isInvalid('email')) {
-          <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
+          <div class="text-secondary text-sm mt-1 font-semibold">Por favor, insira um e-mail válido.</div>
         }
       </div>
 
-      <div class="form-group">
-        <label for="password" class="form-label">Senha</label>
-        <div class="input-wrapper" [class.is-invalid]="isInvalid('password')">
-          <i class="fas fa-lock"></i>
-          <input type="password" id="password" formControlName="password" placeholder="Digite sua senha">
+      <div class="mb-6">
+        <label for="password" class="block mb-2 font-semibold text-dark">Senha</label>
+        
+        <div class="relative flex items-center group" [class.is-invalid]="isInvalid('password')">
+          <i class="fas fa-lock absolute left-4 text-muted transition-colors duration-200 group-[.is-invalid]:text-secondary"></i>
+          <input type="password" id="password" formControlName="password" placeholder="Digite sua senha" 
+                 class="w-full py-3 pr-4 pl-10 border border-muted rounded-lg text-base outline-none transition-all duration-200 focus:border-primary focus:ring-2 focus:ring-primary/10 group-[.is-invalid]:border-secondary group-[.is-invalid]:bg-secondary/10">
         </div>
+        
         @if (isInvalid('password')) {
-          <div class="invalid-feedback">A senha é obrigatória.</div>
+          <div class="text-secondary text-sm mt-1 font-semibold">A senha é obrigatória.</div>
         }
       </div>
 
       @if (errorMessage()) {
-        <div class="alert-danger">
+        <div class="bg-secondary/10 text-secondary p-3 rounded-lg border-l-4 border-secondary mb-6 font-semibold flex items-center gap-2">
           <i class="fas fa-exclamation-triangle"></i> {{ errorMessage() }}
         </div>
       }
 
-      <button type="submit" class="btn-submit" [disabled]="isLoading()">
+      <button type="submit" [disabled]="isLoading()" 
+              class="w-full bg-primary text-light border-none py-4 rounded-lg font-primary text-xl font-bold cursor-pointer transition-all duration-300 flex justify-center items-center gap-2 hover:bg-[#025f69] hover:-translate-y-1 hover:shadow-lg disabled:bg-muted disabled:cursor-not-allowed disabled:hover:bg-muted disabled:hover:translate-y-0 disabled:hover:shadow-none">
         @if (isLoading()) {
           <i class="fas fa-spinner fa-spin"></i> Entrando...
         } @else {
-          Entrar no Sistema
+          Entrar como Administrador
         }
       </button>
 
     </form>
 
-    <div class="login-footer">
-      <a routerLink="/" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para a Home</a>
+    <!-- Rodapé -->
+    <div class="mt-10 text-center border-t border-muted pt-8">
+      <a routerLink="/" class="text-muted no-underline text-sm font-semibold transition-colors duration-300 hover:text-secondary flex items-center justify-center gap-2">
+        <i class="fas fa-arrow-left"></i> Voltar para a Home
+      </a>
     </div>
     
   </div>

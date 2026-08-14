@@ -1,55 +1,66 @@
-<footer>
-  <div class="main-footer">
-    <div class="container footer-grid">
+<footer class="bg-white text-muted border-t border-primary">
+  
+  <div class="py-14 md:py-20">
+    <div class="max-w-300 mx-auto px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-10 md:gap-12 text-center lg:text-left">
 
-      <div class="footer-column about-column">
-        <img src="assets/images/abracelogo.png" alt="Logo Instituto AbraceRS" class="footer-logo">
-        <p class="about-text">
+      <!-- Logo, Descrição e Redes Sociais -->
+      <div class="col-span-2 md:col-span-3 lg:col-span-5 text-center lg:text-left">
+        <img src="assets/images/abracelogo.png" alt="Logo Instituto AbraceRS" class="max-h-15 mx-auto lg:mx-0">
+        
+        <p class="font-secondary text-sm lg:text-base leading-relaxed text-dark my-8 mx-auto lg:mx-0 max-w-100">
           O povo pelo povo. Atuando de forma transparente e direta na reconstrução de vidas no Rio Grande do Sul.
         </p>
-        <div class="social-icons">
-          <a href="https://www.instagram.com/institutoabracers/" target="_blank" aria-label="Instagram">
+        
+        <div class="flex gap-6 justify-center lg:justify-start">
+          <a href="https://www.instagram.com/institutoabracers/" target="_blank" aria-label="Instagram" 
+             class="text-primary text-2xl inline-block transition-all duration-300 hover:text-secondary hover:-translate-y-1 hover:scale-110 hover:opacity-100">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="https://www.tiktok.com/@institutoabracers" target="_blank" aria-label="TikTok">
+          <a href="https://www.tiktok.com/@institutoabracers" target="_blank" aria-label="TikTok" 
+             class="text-primary text-2xl inline-block transition-all duration-300 hover:text-secondary hover:-translate-y-1 hover:scale-110 hover:opacity-100">
             <i class="fab fa-tiktok"></i>
           </a>
-          <a href="https://x.com/InstAbraceRS" target="_blank" aria-label="Twitter">
+          <a href="https://x.com/InstAbraceRS" target="_blank" aria-label="Twitter" 
+             class="text-primary text-2xl inline-block transition-all duration-300 hover:text-secondary hover:-translate-y-1 hover:scale-110 hover:opacity-100">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="https://www.youtube.com/@AbraceRS" target="_blank" aria-label="YouTube">
+          <a href="https://www.youtube.com/@AbraceRS" target="_blank" aria-label="YouTube" 
+             class="text-primary text-2xl inline-block transition-all duration-300 hover:text-secondary hover:-translate-y-1 hover:scale-110 hover:opacity-100">
             <i class="fab fa-youtube"></i>
           </a>
         </div>
       </div>
 
-      <div class="footer-column">
-        <h5 class="widget-title">Navegue</h5>
-        <ul class="footer-links">
-          <li><a routerLink="/somos">Quem Somos</a></li>
-          <li><a routerLink="/atuamos">Como Atuamos</a></li>
-          <li><a routerLink="/blog">Blog</a></li>
+      <!-- Links de Navegação -->
+      <div class="col-span-1 md:col-span-1 lg:col-span-2">
+        <h5 class="font-primary font-bold text-primary text-lg uppercase tracking-wide mb-6">Navegue</h5>
+        <ul class="list-none p-0 m-0 flex flex-col gap-4">
+          <li><a routerLink="/somos" class="font-secondary no-underline text-sm lg:text-base font-medium inline-block transition-all duration-300 hover:text-secondary hover:translate-x-1">Quem Somos</a></li>
+          <li><a routerLink="/atuamos" class="font-secondary no-underline text-sm lg:text-base font-medium inline-block transition-all duration-300 hover:text-secondary hover:translate-x-1">Como Atuamos</a></li>
+          <li><a routerLink="/blog" class="font-secondary no-underline text-sm lg:text-base font-medium inline-block transition-all duration-300 hover:text-secondary hover:translate-x-1">Blog</a></li>
         </ul>
       </div>
 
-      <div class="footer-column">
-        <h5 class="widget-title">Apoie</h5>
-        <ul class="footer-links">
-          <li><a routerLink="/junte">Junte-se a Nós</a></li>
-          <li><a href="https://www.vakinha.com.br/5580617" target="_blank">Doar</a></li>
+      <!-- Links de Apoio -->
+      <div class="col-span-1 md:col-span-1 lg:col-span-2">
+        <h5 class="font-primary font-bold text-primary text-lg uppercase tracking-wide mb-6">Apoie</h5>
+        <ul class="list-none p-0 m-0 flex flex-col gap-4">
+          <li><a routerLink="/junte" class="font-secondary no-underline text-sm lg:text-base font-medium inline-block transition-all duration-300 hover:text-secondary hover:translate-x-1">Junte-se a Nós</a></li>
+          <li><a href="https://www.vakinha.com.br/5580617" target="_blank" class="font-secondary no-underline text-sm lg:text-base font-medium inline-block transition-all duration-300 hover:text-secondary hover:translate-x-1">Doar</a></li>
         </ul>
       </div>
 
-      <div class="footer-column">
-        <h5 class="widget-title">Contato</h5>
-        <ul class="footer-contact">
-          <li>
-            <i class="fas fa-envelope"></i>
-            <span>institutoabracers&#64;gmail.com</span>
+      <!-- Contato -->
+      <div class="col-span-2 md:col-span-1 lg:col-span-3">
+        <h5 class="font-primary font-bold text-primary text-lg uppercase tracking-wide mb-6">Contato</h5>
+        <ul class="list-none p-0 m-0 flex flex-col gap-4">
+          <li class="flex items-center justify-center lg:justify-start gap-3 font-secondary text-sm lg:text-base">
+            <i class="fas fa-envelope text-primary text-base lg:text-xl"></i>
+            <span class="cursor-default transition-colors duration-300 hover:text-secondary">institutoabracers&#64;gmail.com</span>
           </li>
-          <li>
-            <i class="fas fa-phone"></i>
-            <span>+55 (51) 99380-1665</span>
+          <li class="flex items-center justify-center lg:justify-start gap-3 font-secondary text-sm lg:text-base">
+            <i class="fas fa-phone text-primary text-base lg:text-xl"></i>
+            <span class="cursor-default transition-colors duration-300 hover:text-secondary">+55 (51) 99380-1665</span>
           </li>
         </ul>
       </div>
@@ -57,11 +68,12 @@
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <div class="container">
-      <p class="copyright">
+  <!-- Rodapé -->
+  <div class="bg-primary py-6 text-center">
+    <div class="max-w-300 mx-auto px-6">
+      <p class="font-secondary text-sm lg:text-base text-white m-0">
         © {{ currentYear }} Instituto AbraceRS - Desenvolvido por 
-        <a href="https://github.com/OndeJoaoGularte" target="_blank">João Gularte</a>
+        <a href="https://github.com/OndeJoaoGularte" target="_blank" class="text-white font-bold no-underline transition-all duration-300 hover:text-accent hover:border-accent">João Gularte</a>
       </p>
     </div>
   </div>

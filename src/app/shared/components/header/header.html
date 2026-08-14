@@ -1,63 +1,77 @@
-<header [class.scrolled]="isScrolled()">
+<header class="sticky top-0 z-1000 bg-light shadow-[0_2px_10px_rgba(0,0,0,0.1)] border-b border-primary" [class.scrolled]="isScrolled()">
 
-  <!-- Barra Superior de Contatos -->
-  <div class="top-bar">
-    <div class="container top-bar-content">
-      <div class="contact-info">
-        <span>
-          <i class="fa-solid fa-phone"></i>
-          (51) 99380-1665
-        </span>
-        <span class="email-info">
-          <i class="fa-solid fa-envelope"></i>
-          institutoabracers@gmail.com
-        </span>
-      </div>
+    <!-- Barra Superior de Contatos -->
+    <div class="bg-primary text-light overflow-hidden h-10 hidden lg:block transition-all duration-500 ease-in-out" [class.!h-0]="isScrolled()" [class.opacity-0]="isScrolled()">
 
-      <div class="social-icons">
-        <a href="https://www.instagram.com/institutoabracers/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@institutoabracers" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://x.com/InstAbraceRS" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-        <a href="https://www.youtube.com/@AbraceRS" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      </div>
-    </div>
-  </div>
+        <div class="max-w-300 mx-auto px-8 flex justify-between items-center h-full text-sm font-semibold">
 
-  <!-- Navegação Principal -->
-  <nav class="main-nav">
-    <div class="container nav-container">
+            <!-- Meios de Contato -->
+            <div class="flex gap-8">
+                <span>
+                    <i class="fa-solid fa-phone text-accent mr-2"></i>
+                    (51) 99380-1665
+                </span>
+                <span>
+                    <i class="fa-solid fa-envelope text-accent mr-2"></i>
+                    institutoabracers@gmail.com
+                </span>
+            </div>
 
-      <a class="nav-logo" routerLink="/" (click)="closeMenu()">
-        <img src="assets/images/abracelogo.png" alt="Logo Instituto AbraceRS" class="h-12 w-auto" />
-      </a>
-
-      <div class="nav-main-group" [class.active]="isMenuOpen()">
-        <ul class="nav-links">
-          <li><a routerLink="/home" routerLinkActive="active-link" (click)="closeMenu()">Home</a></li>
-          <li><a routerLink="/somos" routerLinkActive="active-link" (click)="closeMenu()">Quem Somos</a></li>
-          <li><a routerLink="/atuamos" routerLinkActive="active-link" (click)="closeMenu()">Como Atuamos</a></li>
-          <li><a routerLink="/blog" routerLinkActive="active-link" (click)="closeMenu()">Blog</a></li>
-          <li><a routerLink="/junte" routerLinkActive="active-link" (click)="closeMenu()">Junte-se a Nós</a></li>
-        </ul>
-
-        <div class="nav-actions">
-          <button class="nav-cta" (click)="openVakinha()">Doar</button>
-
-
-          @if (authService.isLoggedIn()) {
-          <button (click)="onSignOut()" class="btn-signout">Sair</button>
-          }
+            <!-- Redes Sociais -->
+            <div class="flex gap-8">
+                <a href="https://www.instagram.com/institutoabracers/" target="_blank" aria-label="Instagram" class="text-white text-lg transition-all duration-300 hover:text-accent hover:scale-130">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@institutoabracers" target="_blank" aria-label="TikTok" class="text-white text-lg transition-all duration-300 hover:text-accent hover:scale-130">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://x.com/InstAbraceRS" target="_blank" aria-label="Twitter" class="text-white text-lg transition-all duration-300 hover:text-accent hover:scale-130">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="https://www.youtube.com/@AbraceRS" target="_blank" aria-label="YouTube" class="text-white text-lg transition-all duration-300 hover:text-accent hover:scale-130">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
         </div>
-      </div>
-
-      <button class="hamburger-menu" (click)="toggleMenu()" [class.active]="isMenuOpen()" aria-label="Abrir menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
     </div>
-  </nav>
-</header>
 
-<div class="header-placeholder"></div>
+    <!-- Barra de Navegação -->
+    <nav class="h-20 lg:h-18">
+        <div class="max-w-248 mx-auto px-8 flex justify-between items-center h-full">
+
+            <!-- Logo -->
+            <a class="transition-all duration-300 hover:opacity-80 hover:-translate-y-1 hover:scale-110" routerLink="/" (click)="closeMenu()">
+                <img src="assets/images/abracelogo.png" alt="Logo Instituto AbraceRS" class="h-12 w-auto" />
+            </a>
+
+            <!-- Menu de Navegação -->
+            <div class="fixed top-20 left-0 w-full h-[calc(100vh-80px)] bg-light flex flex-col justify-center p-8 gap-8 opacity-0 invisible -translate-y-2 transition-all duration-300 lg:static lg:w-auto lg:h-auto lg:flex-row lg:bg-transparent lg:p-0 lg:opacity-100 lg:visible lg:translate-y-0" [class.!opacity-100]="isMenuOpen()" [class.!visible]="isMenuOpen()" [class.!translate-y-0]="isMenuOpen()">
+
+                <ul class="flex flex-col lg:flex-row items-center gap-8 list-none m-0 p-0 text-xl lg:text-base">
+                    <li><a class="nav-link" routerLink="/home" routerLinkActive="active-link" (click)="closeMenu()">Home</a></li>
+                    <li><a class="nav-link" routerLink="/somos" routerLinkActive="active-link" (click)="closeMenu()">Quem Somos</a></li>
+                    <li><a class="nav-link" routerLink="/atuamos" routerLinkActive="active-link" (click)="closeMenu()">Como Atuamos</a></li>
+                    <li><a class="nav-link" routerLink="/blog" routerLinkActive="active-link" (click)="closeMenu()">Blog</a></li>
+                    <li><a class="nav-link" routerLink="/junte" routerLinkActive="active-link" (click)="closeMenu()">Junte-se a Nós</a></li>
+                </ul>
+
+                <!-- Botões de Ação -->
+                <div class="flex flex-col lg:flex-row items-center gap-4 w-full lg:w-auto">
+                    <button class="w-full max-w-75 lg:w-auto px-6 py-3 rounded-full font-bold cursor-pointer transition-all duration-300 border-none bg-accent text-dark hover:bg-[color-mix(in_srgb,var(--color-accent),gray_15%)] hover:-translate-y-1 hover:scale-110 hover:shadow-[0_4px_10px_rgba(0,0,0,0.15)]" (click)="openVakinha()">Doar</button>
+
+                    @if (authService.isLoggedIn()) {
+                    <button (click)="onSignOut()" class="w-full max-w-75 lg:w-auto px-6 py-3 rounded-full font-bold cursor-pointer transition-all duration-300 bg-transparent text-secondary border-2 border-secondary hover:bg-secondary hover:text-white">Sair</button>
+                    }
+                </div>
+            </div>
+
+            <!-- Menu Mobile -->
+            <button class="group flex flex-col justify-between w-8 h-5 bg-transparent border-none cursor-pointer p-0 z-1001 lg:hidden" (click)="toggleMenu()" [class.active]="isMenuOpen()" aria-label="Abrir menu">
+                <span class="block w-full h-1 bg-dark rounded-sm transition-all duration-300 group-[.active]:translate-y-2 group-[.active]:rotate-45"></span>
+                <span class="block w-full h-1 bg-dark rounded-sm transition-all duration-300 group-[.active]:opacity-0"></span>
+                <span class="block w-full h-1 bg-dark rounded-sm transition-all duration-300 group-[.active]:-translate-y-2 group-[.active]:-rotate-45"></span>
+            </button>
+
+        </div>
+    </nav>
+</header>
