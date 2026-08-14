@@ -1,14 +1,14 @@
-<div class="home-page">
+<div class="w-full">
 
-  <!-- Banner Inicial -->
   <app-hero></app-hero>
 
-  <!-- Seção de Destaque -->
-  <section class="breakout-section">
-    <div class="container">
-      <h2 class="breakout-title">
+  <section class="py-12 bg-wheat">
+    <div class="max-w-300 mx-auto px-6 text-center">
+      <h2 class="font-primary text-secondary font-extrabold leading-tight m-0 text-3xl md:text-4xl lg:text-5xl">
         Nós,<br>
-        <strong class="breakout-highlight">do Instituto Abrace</strong>
+        <strong class="font-primary text-secondary font-black block mt-2 text-5xl md:text-6xl lg:text-7xl">
+          do Instituto Abrace
+        </strong>
       </h2>
     </div>
   </section>
@@ -20,20 +20,33 @@
   <app-projects [isLoading]="isLoading()" [featured]="featuredProject()" [secondary]="secondaryProjects()">
   </app-projects>
 
-
-  <!-- Seção de convite para se voluntariar (ou associar) -->
+  <!-- Seção para Voluntariado (ou Associar) -->
   <app-associate></app-associate>
 
   <!-- Seção de Apoiadores do Instituto -->
-  <app-supporters [masters]="masterSupporters()" [standards]="standardSupporters()">
-  </app-supporters>
+  <app-supporters [isLoading]="isLoading()" [masters]="masterSupporters()" [standards]="standardSupporters()"></app-supporters>
 
   <!-- Seção de Citação -->
-  <section class="quote-section">
-    <div class="container">
-      <p class="quote-text">"Cada doação, cada voluntário, cada gesto de apoio se transforma em um abraço de esperança para quem perdeu tudo."</p>
+  <section class="py-14 bg-dark">
+    <div class="max-w-300 mx-auto px-6 text-center">
+      <p class="font-secondary text-2xl md:text-3xl lg:text-4xl italic font-bold text-light max-w-250 mx-auto leading-relaxed">
+        "Cada doação, cada voluntário, cada gesto de apoio se transforma em um abraço de esperança para quem perdeu tudo."
+      </p>
     </div>
   </section>
+
+  <!-- Seção de Call-to-Action -->
+  <section class="pt-12 bg-light">
+    <div class="max-w-300 mx-auto px-6 text-center">
+      <p class="font-secondary text-dark leading-relaxed m-0 text-xl md:text-2xl lg:text-3xl">
+        A reconstrução é uma maratona, não uma corrida. <br>
+        <strong class="text-primary font-extrabold">Nos ajude a continuar ajudando</strong> <br>
+        e faça parte desta jornada.
+      </p>
+    </div>
+  </section>
+
+
 
   <!-- Seção de Call-to-Action -->
   <app-donate></app-donate>
@@ -42,11 +55,14 @@
   <app-posts [isLoading]="isLoading()" [posts]="latestPosts()" [allLoaded]="allPostsLoaded()" (onLoadMore)="loadMorePosts()">
   </app-posts>
 
-  <section class="breakout-section final-breakout">
-    <div class="container">
-      <h2 class="breakout-title">
+  <!-- Seção Final -->
+  <section class="py-20 bg-wheat">
+    <div class="max-w-300 mx-auto px-6 text-center">
+      <h2 class="font-primary text-secondary font-extrabold leading-tight m-0 text-3xl md:text-4xl lg:text-5xl">
         Instituto Abrace RS,<br>
-        <strong class="breakout-highlight">o povo pelo povo.</strong>
+        <strong class="font-primary text-secondary font-black block mt-2 text-5xl md:text-6xl lg:text-7xl">
+          o povo pelo povo.
+        </strong>
       </h2>
     </div>
   </section>

@@ -1,59 +1,72 @@
-<section class="posts-section">
-  <div class="container">
+<section>
+  <div class="max-w-300 mx-auto px-6">
 
-    <div class="section-header">
-      <h2 class="title">Fique por dentro das nossas atualizações!</h2>
+    <div class="text-center">
+      <h2 class="font-primary text-3xl md:text-4xl font-bold text-dark my-12">
+        Fique por dentro das nossas atualizações!
+      </h2>
     </div>
 
+    <!-- Skeleton Loaders -->
     @if (isLoading()) {
-    <div class="posts-grid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       @for (i of [1, 2, 3]; track i) {
-      <div class="post-card skeleton-card">
-        <div class="img-wrapper skeleton-box"></div>
-        <div class="card-body">
-          <div class="skeleton-box skeleton-text w-25 mb-3"></div>
-          <div class="skeleton-box skeleton-title w-75"></div>
-          <div class="skeleton-box skeleton-text w-100 mt-4"></div>
-          <div class="skeleton-box skeleton-text w-100"></div>
+      <div class="flex flex-col h-full bg-light rounded-xl border border-light pointer-events-none overflow-hidden">
+        <div class="w-full aspect-16/10 bg-muted animate-pulse"></div>
+        <div class="p-6 flex flex-col grow">
+          <div class="w-1/4 h-4 bg-muted animate-pulse rounded mb-3"></div>
+          <div class="w-3/4 h-7 bg-muted animate-pulse rounded mb-3"></div>
+          <div class="w-full h-4 bg-muted animate-pulse rounded mt-6 mb-2"></div>
+          <div class="w-full h-4 bg-muted animate-pulse rounded"></div>
         </div>
       </div>
       }
     </div>
 
+    <!-- Lista de Posts -->
     } @else {
-    <div class="posts-grid">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       @for (post of posts(); track post.id) {
 
-      <a [routerLink]="['/post', post.id]" class="post-card">
-        <div class="img-wrapper">
-          <img [src]="post.image_url" [alt]="post.title" class="card-img">
+      <a [routerLink]="['/post', post.id]" class="group flex flex-col h-full no-underline bg-light rounded-xl border border-light overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.03)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_25px_rgba(0,0,0,0.08)]">
+
+        <div class="w-full aspect-16/10 overflow-hidden bg-light shrink-0">
+          <img [src]="post.image_url" [alt]="post.title" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
         </div>
 
-        <div class="card-body">
-          <p class="card-meta">{{ post.published_at | date:'dd/MM/yyyy' }}</p>
-          <h5 class="card-title">{{ post.title }}</h5>
+        <div class="p-6 flex flex-col grow">
+          <p class="text-sm font-bold text-secondary uppercase tracking-widest m-0 mb-3">
+            {{ post.published_at | date:'dd/MM/yyyy' }}
+          </p>
+          <h5 class="font-primary text-2xl font-bold text-dark leading-snug m-0 mb-3">
+            {{ post.title }}
+          </h5>
 
           @if (post.summary) {
-          <p class="card-summary">{{ post.summary }}</p>
+          <p class="text-sm text-muted leading-relaxed m-0 line-clamp-3">
+            {{ post.summary }}
+          </p>
           }
         </div>
       </a>
 
       } @empty {
-      <div class="empty-state">
-        <i class="fas fa-newspaper"></i>
-        <p>Nenhuma atualização publicada ainda. Volte em breve!</p>
+      <div class="col-span-full text-center p-12 text-muted">
+        <i class="fas fa-newspaper text-5xl mb-4 opacity-50"></i>
+        <p class="text-lg m-0">Nenhuma atualização publicada ainda. Volte em breve!</p>
       </div>
       }
     </div>
 
     @if (!allLoaded() && posts().length > 0) {
-    <div class="load-more-container">
-      <button (click)="loadMore()" class="btn-outline">
+    <div class="text-center mt-16">
+      <button (click)="loadMore()" class="inline-block font-primary text-xl font-bold text-primary bg-transparent border-2 border-primary py-3 px-10 rounded-full cursor-pointer transition-all duration-300 hover:bg-primary hover:text-light hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(2,117,129,0.2)]">
         Carregar Mais Postagens
       </button>
     </div>
     }
+
     }
 
   </div>

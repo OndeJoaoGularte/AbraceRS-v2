@@ -15,6 +15,7 @@ export interface Supporter {
   styleUrl: './supporters.scss',
 })
 export class SupportersComponent {
+  isLoading = input<boolean>(true);
   masters = input<Supporter[]>([]);
   standards = input<Supporter[]>([]);
 }

@@ -1,81 +1,108 @@
-<section class="projects-section">
-  <div class="container">
+<section class="py-12 bg-light">
+  <div class="max-w-250 mx-auto px-6">
 
-    <div class="section-header">
-      <h2 class="title">Buscamos meios para a reconstrução.</h2>
-      <p class="subtitle">Acompanhe nossas iniciativas que estão, neste momento, reconstruindo o futuro.</p>
+    <div class="text-center mb-10">
+      <h2 class="font-primary text-3xl md:text-4xl lg:text-5xl font-bold text-dark my-6 leading-none">
+        Buscamos meios para a reconstrução.
+      </h2>
+      <p class="font-secondary text-lg text-dark max-w-165 mx-auto leading-relaxed">
+        Acompanhe nossas iniciativas que estão, neste momento, reconstruindo o futuro.
+      </p>
     </div>
 
+    <!-- Skeleton Loaders -->
     @if (isLoading()) {
-    <div class="projects-grid">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-      <div class="card featured-card skeleton-card">
-        <div class="img-wrapper skeleton-box"></div>
-        <div class="card-body">
-          <div class="skeleton-box skeleton-badge"></div>
-          <div class="skeleton-box skeleton-title w-75"></div>
-          <div class="skeleton-box skeleton-text w-100 mt-4"></div>
-          <div class="skeleton-box skeleton-text w-100"></div>
-          <div class="skeleton-box skeleton-text w-50"></div>
+      <div class="col-span-1 lg:col-span-2 flex flex-col lg:flex-row bg-neutral rounded-2xl pointer-events-none">
+        <div class="w-full lg:w-[55%] aspect-3/2 lg:aspect-auto animate-pulse bg-muted rounded-2xl"></div>
+        <div class="w-full lg:w-[45%] p-8 lg:p-14 flex flex-col justify-center">
+          <div class="h-6 w-28 bg-muted rounded-full animate-pulse mb-6"></div>
+          <div class="h-8 bg-muted rounded animate-pulse w-3/4 mb-4"></div>
+          <div class="h-4 bg-muted rounded animate-pulse w-full mb-2 mt-6"></div>
+          <div class="h-4 bg-muted rounded animate-pulse w-full mb-2"></div>
+          <div class="h-4 bg-muted rounded animate-pulse w-1/2"></div>
         </div>
       </div>
 
-      <div class="card secondary-card skeleton-card">
-        <div class="img-wrapper skeleton-box"></div>
-        <div class="card-body">
-          <div class="skeleton-box skeleton-title w-75"></div>
-          <div class="skeleton-box skeleton-text w-100"></div>
-          <div class="skeleton-box skeleton-text w-50"></div>
+      <div class="flex flex-col h-full bg-neutral rounded-2xl pointer-events-none">
+        <div class="aspect-3/2 animate-pulse bg-muted rounded-2xl"></div>
+        <div class="p-8 flex flex-col grow">
+          <div class="h-6 bg-muted rounded animate-pulse w-3/4 mb-4"></div>
+          <div class="h-4 bg-muted rounded animate-pulse w-full mb-2 mt-2"></div>
+          <div class="h-4 bg-muted rounded animate-pulse w-1/2"></div>
         </div>
       </div>
 
-      <div class="card secondary-card skeleton-card">
-        <div class="img-wrapper skeleton-box"></div>
-        <div class="card-body">
-          <div class="skeleton-box skeleton-title w-75"></div>
-          <div class="skeleton-box skeleton-text w-100"></div>
-          <div class="skeleton-box skeleton-text w-50"></div>
+      <div class="flex flex-col h-full bg-neutral rounded-2xl pointer-events-none">
+        <div class="aspect-3/2 animate-pulse bg-muted rounded-2xl"></div>
+        <div class="p-8 flex flex-col grow">
+          <div class="h-6 bg-muted rounded animate-pulse w-3/4 mb-4"></div>
+          <div class="h-4 bg-muted rounded animate-pulse w-full mb-2 mt-2"></div>
+          <div class="h-4 bg-muted rounded animate-pulse w-1/2"></div>
         </div>
       </div>
+
     </div>
 
+    <!-- Lista de Projetos -->
     } @else {
 
+    <!-- Card Principal-->
     @if (featured()) {
-    <div class="projects-grid">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-      <a [routerLink]="['/project', featured().id]" class="card featured-card">
-        <div class="img-wrapper">
-          <img [src]="featured().image_url" [alt]="featured().name" class="card-img">
+      <a [routerLink]="['/project', featured().id]" class="col-span-1 lg:col-span-2 flex flex-col lg:flex-row bg-neutral rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 no-underline text-dark group hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:-translate-y-2 lg:hover:translate-y-0 lg:hover:translate-x-2">
+
+        <div class="w-full lg:w-[55%] aspect-3/2 lg:aspect-auto overflow-hidden border-2 border-primary rounded-2xl shrink-0">
+          <img [src]="featured().image_url" [alt]="featured().name" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
         </div>
-        <div class="card-body">
-          <span class="badge">Em Destaque</span>
-          <h3 class="card-title">{{ featured().name }}</h3>
-          <p class="card-text">{{ featured().description }}</p>
-          <span class="read-more">Ler mais <i class="fas fa-arrow-right"></i></span>
+
+        <div class="w-full lg:w-[45%] p-8 lg:p-14 flex flex-col justify-center">
+          <span class="self-start bg-primary text-light py-1.5 px-4 rounded-full text-[0.8rem] font-bold uppercase tracking-widest mb-6">
+            Em Destaque
+          </span>
+          <h3 class="font-primary text-3xl md:text-4xl font-bold m-0 mb-4 leading-tight">
+            {{ featured().name }}
+          </h3>
+          <p class="font-secondary leading-relaxed text-dark m-0 line-clamp-3">
+            {{ featured().description }}
+          </p>
+          <span class="mt-6 font-bold text-primary text-base flex items-center gap-2">
+            Ler mais <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+          </span>
         </div>
       </a>
 
+      <!-- Cards Secundários -->
       @if (secondary().length > 0) {
-      <a [routerLink]="['/project', secondary()[0].id]" class="card secondary-card">
-        <div class="img-wrapper">
-          <img [src]="secondary()[0].image_url" [alt]="secondary()[0].name" class="card-img">
+      <a [routerLink]="['/project', secondary()[0].id]" class="flex flex-col h-full bg-neutral rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 no-underline text-dark group hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:-translate-y-2">
+        <div class="aspect-3/2 flex items-center justify-center overflow-hidden border-2 border-primary rounded-2xl shrink-0">
+          <img [src]="secondary()[0].image_url" [alt]="secondary()[0].name" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
         </div>
-        <div class="card-body">
-          <h5 class="card-title">{{ secondary()[0].name }}</h5>
-          <p class="card-text">{{ secondary()[0].description }}</p>
+        <div class="p-8 flex flex-col grow">
+          <h5 class="font-primary text-2xl font-bold m-0 mb-3 leading-snug">
+            {{ secondary()[0].name }}
+          </h5>
+          <p class="font-secondary leading-relaxed text-dark m-0 line-clamp-3">
+            {{ secondary()[0].description }}
+          </p>
         </div>
       </a>
       }
 
       @if (secondary().length > 1) {
-      <a [routerLink]="['/project', secondary()[1].id]" class="card secondary-card">
-        <div class="img-wrapper">
-          <img [src]="secondary()[1].image_url" [alt]="secondary()[1].name" class="card-img">
+      <a [routerLink]="['/project', secondary()[1].id]" class="flex flex-col h-full bg-neutral rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 no-underline text-dark group hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:-translate-y-2">
+        <div class="aspect-3/2 flex items-center justify-center overflow-hidden border-2 border-primary rounded-2xl shrink-0">
+          <img [src]="secondary()[1].image_url" [alt]="secondary()[1].name" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
         </div>
-        <div class="card-body">
-          <h5 class="card-title">{{ secondary()[1].name }}</h5>
-          <p class="card-text">{{ secondary()[1].description }}</p>
+        <div class="p-8 flex flex-col grow">
+          <h5 class="font-primary text-2xl font-bold m-0 mb-3 leading-snug">
+            {{ secondary()[1].name }}
+          </h5>
+          <p class="font-secondary leading-relaxed text-dark m-0 line-clamp-3">
+            {{ secondary()[1].description }}
+          </p>
         </div>
       </a>
       }

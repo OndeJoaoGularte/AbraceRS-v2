@@ -1,35 +1,55 @@
-<section class="associate-section">
-  <div class="container associate-grid">
-    
-    <div class="text-column">
-      <h2 class="title">Precisamos do seu apoio.</h2>
-      <p class="description">
-        Sua ajuda é o que nos move. Seja contribuindo como associado(a) para fortalecer nossa estrutura 
-        ou doando seu tempo como voluntário(a) na linha de frente, você é parte fundamental da reconstrução. 
+<section class="py-12 bg-neutral">
+
+  <div class="max-w-300 mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16 text-center lg:text-left">
+
+    <!-- Conteúdo da seção -->
+    <div>
+      <h2 class="font-primary text-3xl md:text-4xl lg:text-5xl font-bold my-6 leading-none">
+        Precisamos do seu apoio.
+      </h2>
+      <p class="text-lg leading-relaxed mb-10">
+        Sua ajuda é o que nos move. Seja contribuindo como associado(a) para fortalecer nossa estrutura
+        ou doando seu tempo como voluntário(a) na linha de frente, você é parte fundamental da reconstrução.
         Escolha como quer abraçar essa causa conosco.
       </p>
-      <a routerLink="/junte-se" class="btn-outline">Ver mais detalhes</a>
+
+      <a routerLink="/junte-se" class="inline-block no-underline font-primary text-xl font-bold text-primary bg-transparent border-2 border-primary py-3 px-10 rounded-full transition-all duration-300 mb-4 lg:mb-0 hover:bg-primary hover:text-light hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(2,117,129,0.2)]">
+        Ver mais detalhes
+      </a>
     </div>
 
-    <div class="cards-column">
-      
-      <a routerLink="/junte-se" [queryParams]="{ form: 'associate' }" class="selection-card">
-        <div class="icon-wrapper">
+    <!-- Opções de Associação -->
+    <div class="flex flex-col gap-6">
+
+      <a routerLink="/junte-se" [queryParams]="{ form: 'associate' }" class="flex items-center text-left no-underline bg-light p-6 lg:py-6 lg:px-8 rounded-xl border-2 border-transparent shadow-[0_5px_15px_rgba(0,0,0,0.05)] transition-all duration-300 hover:border-primary hover:-translate-y-1 lg:hover:translate-y-0 lg:hover:translate-x-3 hover:shadow-[0_8px_25px_rgba(0,0,0,0.08)]">
+
+        <div class="text-5xl text-secondary mr-6 flex items-center justify-center shrink-0">
           <i class="fas fa-users"></i>
         </div>
-        <div class="card-content">
-          <h5 class="card-title">Quero me Associar</h5>
-          <p class="card-text">Fortaleça nossa causa de forma contínua.</p>
+
+        <div>
+          <h5 class="font-primary text-2xl font-bold m-0 mb-1 leading-none">
+            Quero me Associar
+          </h5>
+          <p class="text-base m-0">
+            Fortaleça nossa causa de forma contínua.
+          </p>
         </div>
       </a>
 
-      <a routerLink="/junte-se" [queryParams]="{ form: 'volunteer' }" class="selection-card">
-        <div class="icon-wrapper">
+      <a routerLink="/junte-se" [queryParams]="{ form: 'volunteer' }" class="flex items-center text-left no-underline bg-light p-6 lg:py-6 lg:px-8 rounded-xl border-2 border-transparent shadow-[0_5px_15px_rgba(0,0,0,0.05)] transition-all duration-300 hover:border-primary hover:-translate-y-1 lg:hover:translate-y-0 lg:hover:translate-x-3 hover:shadow-[0_8px_25px_rgba(0,0,0,0.08)]">
+
+        <div class="text-5xl text-secondary mr-6 flex items-center justify-center shrink-0">
           <i class="fas fa-hands-helping"></i>
         </div>
-        <div class="card-content">
-          <h5 class="card-title">Quero ser Voluntário(a)</h5>
-          <p class="card-text">Doe seu tempo e suas habilidades na linha de frente.</p>
+
+        <div>
+          <h5 class="font-primary text-2xl font-bold m-0 mb-1 leading-none">
+            Quero ser Voluntário(a)
+          </h5>
+          <p class="text-base m-0">
+            Doe seu tempo e suas habilidades na linha de frente.
+          </p>
         </div>
       </a>
 

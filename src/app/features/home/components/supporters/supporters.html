@@ -1,34 +1,64 @@
-<section class="supporters-section">
-  <div class="container">
-    
-    @if (masters().length > 0) {
-      <h4 class="tier-title">Apoiadores Master</h4>
-      <div class="supporters-grid master">
-        @for (supporter of masters(); track supporter.id) {
-          <a [href]="supporter.link_url" target="_blank" rel="noopener noreferrer" class="supporter-link" [title]="'Visitar o site de ' + supporter.name">
-            <div class="supporter-logo">
-              <img [src]="supporter.image_url" [alt]="'Logo ' + supporter.name">
-            </div>
-          </a>
+<section class="py-12 bg-light text-center">
+  <div class="max-w-250 mx-auto px-6">
+
+    <!-- Skeleton Loaders -->
+    @if (isLoading()) {
+    <!--<h4 class="font-primary font-bold text-secondary/80 uppercase tracking-widest text-lg m-0 mb-8">
+        Apoiadores Master
+      </h4>
+      <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+        @for (i of [1, 2, 3]; track i) {
+          <div class="w-30 h-30 md:w-40 md:h-40 bg-slate-200 rounded-xl animate-pulse"></div>
         }
       </div>
       
-      @if (standards().length > 0) {
-        <hr class="divider">
+      <hr class="border-0 h-px bg-linear-to-r from-transparent via-muted to-transparent my-16"> -->
+
+    <h4 class="font-primary font-bold text-secondary/80 uppercase tracking-widest text-lg m-0 mb-8">
+      Apoiadores
+    </h4>
+    <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+      @for (i of [1, 2, 3, 4, 5]; track i) {
+      <div class="w-20 h-20 md:w-30 md:h-30 bg-muted rounded-xl animate-pulse"></div>
       }
+    </div>
+
+    <!-- Lista de Apoiadores -->
+    } @else {
+
+    @if (masters().length > 0) {
+    <h4 class="font-primary font-bold text-secondary/80 uppercase tracking-widest text-lg m-0 mb-8">
+      Apoiadores Master
+    </h4>
+    <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+      @for (supporter of masters(); track supporter.id) {
+      <a [href]="supporter.link_url" target="_blank" rel="noopener noreferrer" class="inline-block" [title]="'Visitar o site de ' + supporter.name">
+        <div class="flex justify-center items-center">
+          <img [src]="supporter.image_url" [alt]="'Logo ' + supporter.name" class="w-30 h-30 md:w-40 md:h-40 object-contain rounded-xl grayscale-50 opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-110">
+        </div>
+      </a>
+      }
+    </div>
+
+    @if (standards().length > 0) {
+    <hr class="border-0 h-px bg-linear-to-r from-transparent via-muted to-transparent my-16">
+    }
     }
 
     @if (standards().length > 0) {
-      <h4 class="tier-title">Apoiadores</h4>
-      <div class="supporters-grid">
-        @for (supporter of standards(); track supporter.id) {
-          <a [href]="supporter.link_url" target="_blank" rel="noopener noreferrer" class="supporter-link" [title]="'Visitar ' + supporter.name">
-            <div class="supporter-logo">
-              <img [src]="supporter.image_url" [alt]="'Logo ' + supporter.name">
-            </div>
-          </a>
-        }
-      </div>
+    <h4 class="font-primary font-bold text-secondary/80 uppercase tracking-widest text-lg m-0 mb-8">
+      Apoiadores
+    </h4>
+    <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+      @for (supporter of standards(); track supporter.id) {
+      <a [href]="supporter.link_url" target="_blank" rel="noopener noreferrer" class="inline-block" [title]="'Visitar ' + supporter.name">
+        <div class="flex justify-center items-center">
+          <img [src]="supporter.image_url" [alt]="'Logo ' + supporter.name" class="w-20 h-20 md:w-30 md:h-30 object-contain rounded-xl grayscale-50 opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-110">
+        </div>
+      </a>
+      }
+    </div>
+    }
     }
 
   </div>

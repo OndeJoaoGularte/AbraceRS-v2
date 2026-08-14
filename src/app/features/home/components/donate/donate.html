@@ -1,57 +1,50 @@
-<section class="breakout-section">
-  <div class="container">
-    <p class="breakout-subtitle">
-      A reconstrução é uma maratona, não uma corrida. <br>
-      <strong class="text-primary-highlight">Nos ajude a continuar ajudando</strong> <br>
-      e faça parte desta jornada.
-    </p>
-  </div>
-</section>
+<section class="py-16 lg:pb-24 bg-light">
+  <div class="max-w-300 mx-auto px-6 flex flex-wrap justify-center gap-10">
 
-<section class="donate-section">
-  <div class="container donate-wrapper">
+    <!-- Card Doação via PIX -->
+    <div class="w-full max-w-210 bg-neutral rounded-2xl border border-light shadow-[0_10px_40px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_45px_rgba(0,0,0,0.08)] flex flex-col md:flex-row items-center p-10 md:p-12 gap-8 md:gap-12">
 
-    <div class="donate-card pix-card">
-      
-      <div class="pix-left">
-        <div class="card-icon">
+      <div class="w-full md:flex-1 flex flex-col items-center text-center border-b md:border-b-0 md:border-r border-muted pb-8 md:pb-0 md:pr-12">
+        <div class="text-5xl text-secondary mb-3">
           <i class="fab fa-pix"></i>
         </div>
-        <h3 class="card-title">Doe via PIX</h3>
-        <img src="assets/images/qrcode.jpg" class="qr-img" alt="QR Code para Doação via PIX">
+        <h3 class="font-primary text-3xl md:text-4xl font-bold text-dark mt-0 mb-6">Doe via PIX</h3>
+        <img src="assets/images/qrcode.jpg" class="w-full max-w-50 rounded-xl border-4 border-light" alt="QR Code para Doação via PIX">
       </div>
 
-      <div class="pix-right">
-        <p class="instruction-text">Chave PIX (E-mail):</p>
-        <div class="pix-key-box">
+      <div class="w-full md:flex-2 flex flex-col justify-center text-center md:text-left">
+        <p class="font-secondary text-dark font-semibold m-0 mb-2">Chave PIX (E-mail):</p>
+        <div class="bg-light text-dark text-center py-4 px-4 rounded-lg border border-light font-secondary text-xs md:text-lg tracking-wider w-full">
           <strong>doeparaobrace@gmail.com</strong>
         </div>
 
-        <hr class="divider">
+        <hr class="w-full border-0 h-px bg-muted mt-8 mb-0">
 
-        <p class="instruction-text mt-custom">Ou, se preferir, use nossos dados bancários:</p>
-        <p class="bank-details">
+        <p class="font-secondary text-dark font-semibold m-0 mb-2 mt-6">Ou, se preferir, use nossos dados bancários:</p>
+        <p class="font-secondary text-base leading-relaxed text-muted m-0">
           Banco: 748 | Agência: 0116 | Conta: 59673-7<br>
           INSTITUTO ABRACE RS | CNPJ: 57.009.579/0001-70
         </p>
       </div>
-      
+
     </div>
 
+    <!-- Card Vakinha (Comentado, mas já refatorado para Tailwind!) -->
     <!-- 
-    <div class="donate-card vakinha-card">
-      <div class="card-icon">
+    <div class="w-full max-w-[400px] bg-light rounded-2xl border border-light shadow-[0_10px_40px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_45px_rgba(0,0,0,0.08)] flex flex-col items-center text-center p-10 md:py-12 md:px-10 justify-between">
+      <div class="text-4xl text-secondary mb-2">
         <i class="fas fa-hand-holding-heart"></i>
       </div>
-      <h3 class="card-title">Campanha no Vakinha</h3>
+      <h3 class="font-primary text-[2rem] font-bold text-dark mt-0 mb-6">Campanha no Vakinha</h3>
 
-      <img src="assets/images/home/vakinha.jpg" class="vakinha-img" alt="Logo do Vakinha">
+      <img src="assets/images/home/vakinha.jpg" class="w-full max-w-50 rounded-xl mb-8" alt="Logo do Vakinha">
 
-      <p class="vakinha-description">
+      <p class="font-secondary leading-relaxed text-slate-600 mb-8">
         Contribua também através da nossa campanha online, uma forma segura e transparente de doar.
       </p>
 
-      <a href="https://www.vakinha.com.br/5580617" target="_blank" rel="noopener noreferrer" class="btn-vakinha">
+      <a href="https://www.vakinha.com.br/5580617" target="_blank" rel="noopener noreferrer" 
+         class="inline-block w-full bg-green-500 text-light font-primary text-[1.2rem] font-bold no-underline p-4 rounded-lg transition-all duration-300 hover:bg-green-600 hover:-translate-y-0.5 box-border">
         Acessar Campanha
       </a>
     </div>
