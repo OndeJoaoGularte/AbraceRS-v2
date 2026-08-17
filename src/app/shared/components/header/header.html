@@ -57,7 +57,9 @@
 
                 <!-- Botões de Ação -->
                 <div class="flex flex-col lg:flex-row items-center gap-4 w-full lg:w-auto">
-                    <button class="w-full max-w-75 lg:w-auto px-6 py-3 rounded-full font-bold cursor-pointer transition-all duration-300 border-none bg-accent text-dark hover:bg-[color-mix(in_srgb,var(--color-accent),gray_15%)] hover:-translate-y-1 hover:scale-110 hover:shadow-[0_4px_10px_rgba(0,0,0,0.15)]" (click)="openVakinha()">Doar</button>
+                    <a [routerLink]="['/home']" fragment="donate" (click)="closeMenu()" class="inline-flex justify-center items-center text-center no-underline w-full max-w-75 lg:w-auto px-6 py-3 rounded-full font-bold cursor-pointer transition-all duration-300 border-none bg-accent text-dark hover:bg-[color-mix(in_srgb,var(--color-accent),gray_15%)] hover:-translate-y-1 hover:scale-110 hover:shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
+                        Doar
+                    </a>
 
                     @if (authService.isLoggedIn()) {
                     <button (click)="onSignOut()" class="w-full max-w-75 lg:w-auto px-6 py-3 rounded-full font-bold cursor-pointer transition-all duration-300 bg-transparent text-secondary border-2 border-secondary hover:bg-secondary hover:text-light">Sair</button>

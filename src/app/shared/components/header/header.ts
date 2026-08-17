@@ -36,11 +36,6 @@ export class HeaderComponent {
     this.isMenuOpen.set(false);
   }
 
-  openVakinha(): void {
-    this.closeMenu();
-    window.open('https://www.vakinha.com.br/5580617', '_blank');
-  }
-
   async onSignOut(): Promise<void> {
     await this.authService.signOut();
     this.router.navigate(['/']);
