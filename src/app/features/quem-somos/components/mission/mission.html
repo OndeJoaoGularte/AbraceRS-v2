@@ -1,1 +1,29 @@
-<p>mission works!</p>
+<section class="py-12">
+  <div class="container mx-auto px-6 max-w-330">
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+
+      <!-- Cards -->
+      @for (item of coreValues(); track item.title) {
+
+      <div class="group flex flex-col items-center bg-light border border-light/80 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] h-full">
+
+        <div class="flex items-center justify-center rounded-full bg-light text-secondary text-5xl mb-4 transition-transform duration-300 group-hover:scale-110">
+          <i [class]="item.icon"></i>
+        </div>
+
+        <h3 class="font-primary text-3xl font-bold text-dark mb-4">
+          {{ item.title }}
+        </h3>
+
+        <p class="text-muted text-sm md:text-base leading-relaxed text-left">
+          {{ item.text }}
+        </p>
+
+      </div>
+
+      }
+
+    </div>
+  </div>
+</section>

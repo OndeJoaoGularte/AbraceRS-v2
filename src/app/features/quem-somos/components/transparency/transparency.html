@@ -1,1 +1,43 @@
-<p>transparency works!</p>
+<section class="py-12 text-center">
+  <div class="container mx-auto px-6 max-w-300">
+
+    <div class="mb-14">
+      <h2 class="font-primary text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">
+        Transparência
+      </h2>
+      <p class="font-secondary text-lg text-muted max-w-3xl mx-auto leading-relaxed">
+        Acreditamos que a confiança é construída com clareza e responsabilidade. Aqui você
+        pode acessar documentos importantes e acompanhar o impacto do nosso trabalho.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- Cards -->
+      @for (item of coreValues(); track item.title) {
+
+      <div class="group flex flex-col items-center bg-light border border-light/80 rounded-2xl shadow-[0_4px_15px_rgba(0,0,0,0.03)] p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.08)] h-full">
+
+        <div class="text-5xl text-secondary mb-6 transition-transform duration-300 group-hover:scale-110">
+          <i [class]="item.icon"></i>
+        </div>
+
+        <h5 class="font-primary text-3xl font-bold text-dark mb-3">
+          {{ item.title }}
+        </h5>
+
+        <p class="text-muted text-sm md:text-base leading-relaxed mb-8">
+          {{ item.text }}
+        </p>
+
+        <a [href]="item.linkUrl" [attr.download]="item.downloadName ? item.downloadName : null" class="mt-auto inline-block font-primary font-bold text-secondary border-2 border-secondary rounded-full px-8 py-2.5 transition-colors duration-300 hover:bg-secondary hover:text-light">
+          {{ item.btnText }}
+        </a>
+
+      </div>
+
+      }
+
+    </div>
+  </div>
+</section>
