@@ -14,7 +14,7 @@
   <app-mission></app-mission>
 
   <!-- Seção de Equipe -->
-  <app-team></app-team>
+  <app-team [team]="teamMembers()" [isLoading]="isLoading()"></app-team>
 
   <!-- Seção de Transparência -->
   <app-transparency></app-transparency>

@@ -20,7 +20,7 @@ export class TransparencyComponent {
   coreValues = signal<coreValue[]>([
     {
       icon: 'fas fa-file-alt',
-      title: 'Relatórios de Atividades',
+      title: 'Relatórios',
       text: 'Acompanhe nossas ações, projetos concluídos e o número de pessoas impactadas por nossas iniciativas.',
       btnText: 'Ver Relatórios',
       linkUrl: '#'

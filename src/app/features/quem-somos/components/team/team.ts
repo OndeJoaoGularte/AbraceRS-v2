@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { TeamMember } from '../../../../core/services/team/team';
 
 @Component({
   selector: 'app-team',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   templateUrl: './team.html',
   styleUrl: './team.scss',
 })
-export class TeamComponent {}
+export class TeamComponent {
+  team = input<TeamMember[]>([]);
+  isLoading = input<boolean>(false);
+}
