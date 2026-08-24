@@ -1,1 +1,43 @@
-<p>atuamos-timeline works!</p>
+<section class="py-12 bg-neutral">
+  <div class="container mx-auto px-6 max-w-300">
+    
+    <div class="text-center mb-16">
+      <h2 class="font-primary text-2xl md:text-3xl lg:text-4xl font-bold text-dark mb-4">
+        Origem e Processo
+      </h2>
+      <p class="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
+        Nascemos da solidariedade nas enchentes de maio de 2024. O que começou como um mutirão de resgate no 4º Distrito evoluiu para um processo de ajuda contínua.
+      </p>
+    </div>
+
+    <div class="relative max-w-3xl mx-auto mt-12">
+      
+      <div class="absolute left-6 top-2 md:left-7 md:top-3 lg:left-8 lg:top-4 bottom-4 w-0.5 bg-secondary/60"></div>
+
+      <div class="space-y-12">
+        @for (item of timelineSteps(); track item.step) {
+          
+          <div class="relative flex items-start gap-8 group">
+            
+            <div class="relative z-10 flex-none flex items-center justify-center w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full border-4 border-neutral bg-primary text-neutral text-lg md:text-xl lg:text-2xl font-bold transition-all duration-300 group-hover:scale-110">
+              {{ item.step }}
+            </div>
+            
+            <div class="flex-1 pt-3">
+              <h5 class="font-primary text-lg md:text-xl lg:text-2xl font-bold text-dark mb-2 group-hover:text-secondary transition-colors duration-300">
+                {{ item.title }}
+              </h5>
+              <p class="text-sm md:text-base lg:text-lg text-muted leading-relaxed">
+                {{ item.description }}
+              </p>
+            </div>
+            
+          </div>
+
+        }
+      </div>
+
+    </div>
+
+  </div>
+</section>
