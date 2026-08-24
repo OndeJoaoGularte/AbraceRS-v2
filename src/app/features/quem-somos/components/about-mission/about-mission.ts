@@ -7,12 +7,12 @@ export interface CoreValue {
 }
 
 @Component({
-  selector: 'app-mission',
+  selector: 'app-about-mission',
   imports: [],
-  templateUrl: './mission.html',
-  styleUrl: './mission.scss',
+  templateUrl: './about-mission.html',
+  styleUrl: './about-mission.scss',
 })
-export class MissionComponent {
+export class AboutMissionComponent {
 
   coreValues = signal<CoreValue[]>([
     {

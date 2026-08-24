@@ -1,21 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IntroComponent } from './components/intro/intro';
-import { MissionComponent } from './components/mission/mission';
-import { TeamComponent } from './components/team/team';
-import { TransparencyComponent } from './components/transparency/transparency';
 import { TeamMember, TeamService } from '../../core/services/team/team';
+import { AboutAnswerComponent } from './components/about-answer/about-answer';
+import { AboutMissionComponent } from './components/about-mission/about-mission';
+import { AboutTeamComponent } from './components/about-team/about-team';
+import { AboutTransparencyComponent } from './components/about-transparency/about-transparency';
 
 @Component({
   selector: 'app-quem-somos',
   imports: [
     CommonModule,
     RouterModule,
-    IntroComponent,
-    MissionComponent,
-    TeamComponent,
-    TransparencyComponent,
+    AboutAnswerComponent,
+    AboutMissionComponent,
+    AboutTeamComponent,
+    AboutTransparencyComponent
   ],
   templateUrl: './quem-somos.html',
   styleUrl: './quem-somos.scss',

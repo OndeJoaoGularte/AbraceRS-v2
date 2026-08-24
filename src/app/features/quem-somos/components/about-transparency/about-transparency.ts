@@ -10,12 +10,12 @@ export interface coreValue {
 }
 
 @Component({
-  selector: 'app-transparency',
+  selector: 'app-about-transparency',
   imports: [],
-  templateUrl: './transparency.html',
-  styleUrl: './transparency.scss',
+  templateUrl: './about-transparency.html',
+  styleUrl: './about-transparency.scss',
 })
-export class TransparencyComponent {
+export class AboutTransparencyComponent {
 
   coreValues = signal<coreValue[]>([
     {
