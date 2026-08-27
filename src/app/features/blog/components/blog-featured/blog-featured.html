@@ -1,0 +1,47 @@
+<section class="py-12 bg-light">
+  <div class="container mx-auto max-w-300">
+    
+    @if (isLoading()) {
+      <div class="w-full h-125 md:h-113 bg-muted animate-pulse rounded-3xl border border-primary"></div>
+    
+    } @else if (post()) {
+      
+      <a [routerLink]="['/post', post().id]" 
+         class="group flex flex-col md:flex-row bg-light rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-primary transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] cursor-pointer">
+        
+        <div class="w-full md:w-3/5 h-64 md:h-auto overflow-hidden bg-light">
+          <img [src]="post().image_url || 'assets/images/placeholder.png'" 
+               [alt]="post().title" 
+               class="w-full h-full object-cover transition-all duration-700 group-hover:scale-102">
+        </div>
+        
+        <div class="w-full md:w-2/5 p-8 md:p-12 flex flex-col justify-center">
+          
+          <span class="inline-block self-start px-4 py-1.5 mb-6 rounded-full bg-secondary text-light text-xs font-bold uppercase tracking-wider shadow-md">
+            Última Postagem
+          </span>
+          
+          <h2 class="font-primary text-3xl md:text-4xl font-bold text-dark mb-4 leading-tight group-hover:text-primary transition-colors">
+            {{ post().title }}
+          </h2>
+          
+          <p class="text-muted text-lg leading-relaxed line-clamp-3 mb-6">
+            {{ post().summary }}
+          </p>
+          
+          <div class="mt-auto text-sm text-primary font-semibold flex flex-col gap-1">
+            <span>Publicado em: {{ post().published_at | date:'dd/MM/yyyy' }}</span>
+            
+            @if (post().updated_at) {
+              <span class="text-xs text-muted">
+                Editado: {{ post().updated_at | date:'dd/MM/yyyy HH:mm' }}
+              </span>
+            }
+          </div>
+          
+        </div>
+      </a>
+    }
+
+  </div>
+</section>

@@ -22,7 +22,7 @@ export class AtuamosTimelineComponent {
     {
       step: 3,
       title: 'Institucionalização',
-      description: 'Para organizar e ampliar o apoio, o grupo de voluntários se formalizou, criando o Instituto AbraceRS.'
+      description: 'Para organizar e ampliar o apoio, o grupo de voluntários se formalizou, criando o Instituto Abrace.'
     }
   ]);
 

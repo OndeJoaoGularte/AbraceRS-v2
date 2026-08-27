@@ -1,0 +1,84 @@
+<section class="py-12 bg-neutral">
+  <div class="container mx-auto px-6 max-w-300">
+    <div class="flex flex-col lg:flex-row justify-center items-center gap-2 lg:gap-6 mb-12 bg-light p-4 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-primary">
+      <div>
+        @if (authService.isLoggedIn()) {
+        <a routerLink="/admin/post/new" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-light font-bold py-3 px-6 rounded-full transition-all duration-300 shadow-md">
+          <i class="fas fa-plus mr-2"></i> Nova Postagem
+        </a>
+        }
+      </div>
+
+      <div class="flex flex-col sm:flex-row w-full lg:w-auto gap-4">
+
+        <div class="relative w-full flex items-center">
+          <i class="fas fa-search absolute left-4 text-muted pointer-events-none"></i>
+          <input type="text" placeholder="Pesquisar postagens..." #searchInput (input)="onSearchInput(searchInput.value)" [value]="searchTool" class="w-full pl-10 pr-4 py-3 bg-light border border-muted text-muted rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm">
+        </div>
+
+        <select [(ngModel)]="presentOrdination" (change)="loadPosts()" class="w-full px-4 py-3 bg-light border border-muted rounded-xl focus:outline-none focus:ring-2 focus:ring-primary text-muted text-sm cursor-pointer">
+          <option value="published_at-desc">Mais Recentes</option>
+          <option value="published_at-asc">Mais Antigos</option>
+          <option value="title-asc">Ordem Alfabética (A-Z)</option>
+          <option value="title-desc">Ordem Alfabética (Z-A)</option>
+          <option value="updated_at-desc">Atualização mais Recente</option>
+          <option value="updated_at-asc">Atualização mais Antiga</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      @if (loading()) {
+      @for (item of [1, 2, 3, 4, 5, 6]; track item) {
+      <div class="bg-light rounded-2xl border border-primary p-4">
+        <div class="w-full aspect-4/3 bg-muted rounded-xl animate-pulse mb-4"></div>
+        <div class="h-6 w-3/4 bg-muted rounded animate-pulse mb-3"></div>
+        <div class="h-4 w-full bg-muted rounded animate-pulse mb-2"></div>
+        <div class="h-4 w-5/6 bg-muted rounded animate-pulse"></div>
+      </div>
+      }
+      } @else {
+
+      @for (post of posts(); track post.id) {
+      <div (click)="showDetails(post.id)" class="group flex flex-col bg-light rounded-2xl overflow-hidden border border-primary shadow-[0_4px_20px_rgba(0,0,0,0.03)] cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)]">
+
+        <div class="relative w-full aspect-4/3 overflow-hidden bg-light">
+          <img [src]="post.image_url || 'assets/images/placeholder.png'" [alt]="post.title" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-101">
+        </div>
+
+        <div class="p-6 flex flex-col grow">
+          <h5 class="font-primary text-xl font-bold text-dark mb-3 leading-tight group-hover:text-primary transition-all">
+            {{ post.title }}
+          </h5>
+          <p class="text-muted text-sm leading-relaxed line-clamp-3 mb-4 grow">
+            {{ post.summary }}
+          </p>
+
+          @if (authService.isLoggedIn()) {
+          <div class="flex gap-2 pt-4 border-t border-muted mt-auto">
+            <a [routerLink]="['/admin/post/edit', post.id]" (click)="$event.stopPropagation()" class="flex-1 text-center bg-primary/20 hover:bg-primary/30 text-primary text-sm font-semibold py-2 rounded-lg transition-all">
+              Editar
+            </a>
+            <button (click)="deletePost(post.id, $event)" class="flex-1 text-center bg-secondary/20 hover:bg-secondary/30 text-secondary text-sm font-semibold py-2 rounded-lg transition-all on-click">
+              Deletar
+            </button>
+          </div>
+          }
+        </div>
+
+      </div>
+      }
+      }
+    </div>
+
+    @if (!loading() && posts().length === 0) {
+    <div class="text-center py-20 bg-light rounded-2xl border border-primary mt-8">
+      <i class="fas fa-search text-5xl text-muted mb-4"></i>
+      <p class="text-xl font-bold text-dark mb-2">Nenhuma postagem encontrada</p>
+      <p class="text-muted">Tente ajustar seus filtros ou o termo de busca.</p>
+    </div>
+    }
+
+  </div>
+</section>
