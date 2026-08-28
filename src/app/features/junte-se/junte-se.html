@@ -1,0 +1,28 @@
+<div class="w-full">
+
+  <!-- Seção de Introdução -->
+  <section class="py-12">
+    <div class="max-w-300 mx-auto px-6 text-center">
+      <h1 class="font-primary text-secondary font-black block mt-2 text-4xl md:text-5xl lg:text-6xl">Junte-se a Nós</h1>
+      <p class="font-secondary text-dark leading-relaxed m-0 text-xl md:text-2xl lg:text-3xl">Sua ajuda é fundamental. Escolha como você quer fazer parte da força que reconstrói o Rio Grande do Sul.</p>
+      @if (authService.isLoggedIn()) {
+      <button (click)="showAdminView()" class="inline-flex items-center gap-2 px-6 mt-6 py-3 rounded-full border-2 border-slate-300 text-slate-600 font-bold hover:bg-slate-100 hover:text-primary hover:border-primary transition-all">
+        <i class="fas fa-eye"></i> Ver Cadastros Recebidos
+      </button>
+      }
+    </div>
+  </section>
+
+  @if (viewMode() === 'selection') {
+  <app-junte-selection (onSelect)="showForm($event)"></app-junte-selection>
+  }
+
+  @if (viewMode() === 'form') {
+  <app-junte-form [activeForm]="activeForm()" (onBack)="resetView()">
+  </app-junte-form>
+  }
+
+  @if (viewMode() === 'admin') {
+  <app-junte-admin (onBack)="resetView()"></app-junte-admin>
+  }
+</div>

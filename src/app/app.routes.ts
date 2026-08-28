@@ -4,6 +4,7 @@ import { LoginComponent } from './features/admin/login/login';
 import { QuemSomosComponent } from './features/quem-somos/quem-somos';
 import { ComoAtuamosComponent } from './features/como-atuamos/como-atuamos';
 import { BlogComponent } from './features/blog/blog';
+import { JunteSeComponent } from './features/junte-se/junte-se';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'quem-somos', component: QuemSomosComponent },
   { path: 'como-atuamos', component: ComoAtuamosComponent },
-  { path: 'blog', component: BlogComponent }
+  { path: 'blog', component: BlogComponent },
+  { path: 'junte-se', component: JunteSeComponent }
 ];

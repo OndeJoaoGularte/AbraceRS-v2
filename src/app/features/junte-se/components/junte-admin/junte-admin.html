@@ -1,0 +1,109 @@
+<section class="py-12 bg-light">
+<div class="bg-white rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-slate-100 p-6 md:p-10 max-w-4xl mx-auto">
+  
+  <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+    <h2 class="font-primary text-2xl md:text-3xl font-bold text-slate-800 m-0">
+      Cadastros Recebidos
+    </h2>
+    <button (click)="goBack()" class="px-6 py-2 border-2 border-slate-200 text-slate-600 font-bold rounded-full hover:bg-slate-50 transition-colors">
+      <i class="fas fa-arrow-left mr-2"></i> Voltar
+    </button>
+  </div>
+
+  <div class="flex border-b border-slate-200 mb-6 overflow-x-auto">
+    <button (click)="changeTab('associates')"
+            class="flex-1 py-4 px-6 text-center font-bold text-sm md:text-base whitespace-nowrap transition-colors border-b-2"
+            [ngClass]="activeTab() === 'associates' ? 'border-primary text-primary' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'">
+      Associados ({{ associatesList().length }})
+    </button>
+    <button (click)="changeTab('volunteers')"
+            class="flex-1 py-4 px-6 text-center font-bold text-sm md:text-base whitespace-nowrap transition-colors border-b-2"
+            [ngClass]="activeTab() === 'volunteers' ? 'border-primary text-primary' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'">
+      Voluntários ({{ volunteersList().length }})
+    </button>
+  </div>
+
+  @if (isLoading()) {
+    <div class="space-y-4">
+      @for (item of [1,2,3,4]; track item) {
+        <div class="w-full h-16 bg-slate-100 animate-pulse rounded-xl"></div>
+      }
+    </div>
+  } @else {
+    
+    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white">
+      
+      @if (activeTab() === 'associates') {
+        @for (sub of associatesList(); track sub.id) {
+          <div class="border-b border-slate-200 last:border-0">
+            
+            <div (click)="toggleAccordion(sub.id)" class="flex justify-between items-center p-5 cursor-pointer hover:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-4">
+                <i class="fas fa-chevron-right text-slate-400 transition-transform duration-300" 
+                   [class.rotate-90]="expandedId() === sub.id"></i>
+                <strong class="text-slate-800 text-lg">{{ sub.name }}</strong>
+              </div>
+              <div class="hidden md:block text-slate-500 text-sm font-medium">
+                {{ sub.email }} &bull; {{ sub.phone }}
+              </div>
+            </div>
+
+            @if (expandedId() === sub.id) {
+              <div class="p-6 bg-slate-50 border-t border-slate-100">
+                <ul class="space-y-3 text-slate-700 text-sm md:text-base">
+                  <li><strong class="text-slate-900">Tipo:</strong> {{ sub.person_type === 'PESSOA_FISICA' ? 'Pessoa Física' : 'Pessoa Jurídica' }}</li>
+                  <li><strong class="text-slate-900">Documento:</strong> {{ sub.document }}</li>
+                  @if (sub.contact_person) {
+                    <li><strong class="text-slate-900">Contato na Empresa:</strong> {{ sub.contact_person }}</li>
+                  }
+                  <li class="md:hidden"><strong class="text-slate-900">E-mail:</strong> {{ sub.email }}</li>
+                  <li class="md:hidden"><strong class="text-slate-900">Telefone:</strong> {{ sub.phone }}</li>
+                  <li><strong class="text-slate-900">Data de Envio:</strong> {{ sub.created_at | date:'dd/MM/yyyy HH:mm' }}</li>
+                </ul>
+              </div>
+            }
+          </div>
+        } @empty {
+          <div class="p-10 text-center text-slate-500">Nenhum associado cadastrado ainda.</div>
+        }
+      }
+
+      @if (activeTab() === 'volunteers') {
+        @for (sub of volunteersList(); track sub.id) {
+          <div class="border-b border-slate-200 last:border-0">
+            
+            <div (click)="toggleAccordion(sub.id)" class="flex justify-between items-center p-5 cursor-pointer hover:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-4">
+                <i class="fas fa-chevron-right text-slate-400 transition-transform duration-300" 
+                   [class.rotate-90]="expandedId() === sub.id"></i>
+                <strong class="text-slate-800 text-lg">{{ sub.name }}</strong>
+              </div>
+              <div class="hidden md:block text-slate-500 text-sm font-medium">
+                {{ sub.email }} &bull; {{ sub.phone }}
+              </div>
+            </div>
+
+            @if (expandedId() === sub.id) {
+              <div class="p-6 bg-slate-50 border-t border-slate-100">
+                <ul class="space-y-3 text-slate-700 text-sm md:text-base">
+                  <li><strong class="text-slate-900">CPF:</strong> {{ sub.cpf }}</li>
+                  <li class="md:hidden"><strong class="text-slate-900">E-mail:</strong> {{ sub.email }}</li>
+                  <li class="md:hidden"><strong class="text-slate-900">Telefone:</strong> {{ sub.phone }}</li>
+                  <li>
+                    <strong class="text-slate-900 block mb-1">Como pode ajudar:</strong>
+                    <span class="block bg-white p-3 rounded-lg border border-slate-200 text-slate-600">{{ sub.how_to_help }}</span>
+                  </li>
+                  <li><strong class="text-slate-900">Data de Envio:</strong> {{ sub.created_at | date:'dd/MM/yyyy HH:mm' }}</li>
+                </ul>
+              </div>
+            }
+          </div>
+        } @empty {
+          <div class="p-10 text-center text-slate-500">Nenhum voluntário cadastrado ainda.</div>
+        }
+      }
+
+    </div>
+  }
+</div>
+</section>

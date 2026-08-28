@@ -1,0 +1,135 @@
+<section class="py-12 bg-light">
+  @if (submittedSuccessfully() === null) {
+
+  <div class="bg-white rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-slate-100 p-8 md:p-12 max-w-3xl mx-auto">
+
+    <h3 class="font-primary text-3xl font-bold text-center text-slate-800 mb-8">
+      {{ activeForm() === 'associate' ? 'Cadastro de Associado' : 'Cadastro de Voluntário' }}
+    </h3>
+
+    @if (activeForm() === 'associate') {
+    <form [formGroup]="associateForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+      <div class="bg-slate-50 p-4 rounded-2xl flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center mb-6">
+        <label class="flex items-center gap-2 cursor-pointer font-semibold text-slate-700">
+          <input type="radio" formControlName="person_type" value="PESSOA_FISICA" class="w-5 h-5 text-primary focus:ring-primary">
+          Pessoa Física
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer font-semibold text-slate-700">
+          <input type="radio" formControlName="person_type" value="PESSOA_JURIDICA" class="w-5 h-5 text-primary focus:ring-primary">
+          Pessoa Jurídica
+        </label>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-bold text-slate-600 mb-1">
+            {{ associateForm.get('person_type')?.value === 'PESSOA_FISICA' ? 'Nome Completo' : 'Razão Social' }}
+          </label>
+          <input type="text" formControlName="name" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+          @if(isInvalid(associateForm, 'name')) { <p class="text-red-500 text-sm mt-1">Este campo é obrigatório.</p> }
+        </div>
+
+        @if (associateForm.get('person_type')?.value === 'PESSOA_JURIDICA') {
+        <div>
+          <label class="block text-sm font-bold text-slate-600 mb-1">Nome do Contato na Empresa</label>
+          <input type="text" formControlName="contact_person" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+          @if(isInvalid(associateForm, 'contact_person')) { <p class="text-red-500 text-sm mt-1">O contato é obrigatório.</p> }
+        </div>
+        }
+
+        <div>
+          <label class="block text-sm font-bold text-slate-600 mb-1">
+            {{ associateForm.get('person_type')?.value === 'PESSOA_FISICA' ? 'CPF' : 'CNPJ' }}
+          </label>
+          <input type="text" formControlName="document" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+          @if(isInvalid(associateForm, 'document')) { <p class="text-red-500 text-sm mt-1">O documento é obrigatório.</p> }
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-bold text-slate-600 mb-1">E-mail</label>
+            <input type="email" formControlName="email" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+            @if(isInvalid(associateForm, 'email')) { <p class="text-red-500 text-sm mt-1">Insira um e-mail válido.</p> }
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-slate-600 mb-1">Telefone / WhatsApp</label>
+            <input type="tel" formControlName="phone" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+            @if(isInvalid(associateForm, 'phone')) { <p class="text-red-500 text-sm mt-1">O telefone é obrigatório.</p> }
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end items-center gap-4 pt-6 mt-6 border-t border-slate-100">
+        <button type="button" (click)="goBack()" class="px-6 py-3 font-bold text-slate-500 hover:text-slate-800 transition-colors">Voltar</button>
+        <button type="submit" [disabled]="isSubmitting()" class="px-8 py-3 bg-primary hover:bg-[#02626d] text-white font-bold rounded-full transition-colors shadow-md disabled:opacity-50">
+          {{ isSubmitting() ? 'Enviando...' : 'Enviar Cadastro' }}
+        </button>
+      </div>
+    </form>
+    }
+
+    @if (activeForm() === 'volunteer') {
+    <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()" class="space-y-4">
+
+      <div>
+        <label class="block text-sm font-bold text-slate-600 mb-1">Nome Completo</label>
+        <input type="text" formControlName="name" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+        @if(isInvalid(volunteerForm, 'name')) { <p class="text-red-500 text-sm mt-1">O nome é obrigatório.</p> }
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold text-slate-600 mb-1">CPF</label>
+        <input type="text" formControlName="cpf" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+        @if(isInvalid(volunteerForm, 'cpf')) { <p class="text-red-500 text-sm mt-1">O CPF é obrigatório.</p> }
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-bold text-slate-600 mb-1">E-mail</label>
+          <input type="email" formControlName="email" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+          @if(isInvalid(volunteerForm, 'email')) { <p class="text-red-500 text-sm mt-1">Insira um e-mail válido.</p> }
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-slate-600 mb-1">Telefone / WhatsApp</label>
+          <input type="tel" formControlName="phone" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+          @if(isInvalid(volunteerForm, 'phone')) { <p class="text-red-500 text-sm mt-1">O telefone é obrigatório.</p> }
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold text-slate-600 mb-1">De que forma você gostaria de ajudar?</label>
+        <textarea formControlName="how_to_help" rows="4" placeholder="Ex: Ajudar na triagem, tenho experiência com logística..." class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary resize-none"></textarea>
+        @if(isInvalid(volunteerForm, 'how_to_help')) { <p class="text-red-500 text-sm mt-1">Este campo é obrigatório.</p> }
+      </div>
+
+      <div class="flex justify-end items-center gap-4 pt-6 mt-6 border-t border-slate-100">
+        <button type="button" (click)="goBack()" class="px-6 py-3 font-bold text-slate-500 hover:text-slate-800 transition-colors">Voltar</button>
+        <button type="submit" [disabled]="isSubmitting()" class="px-8 py-3 bg-primary hover:bg-[#02626d] text-white font-bold rounded-full transition-colors shadow-md disabled:opacity-50">
+          {{ isSubmitting() ? 'Enviando...' : 'Enviar Cadastro' }}
+        </button>
+      </div>
+    </form>
+    }
+  </div>
+  }
+
+  @if (submittedSuccessfully() !== null) {
+  <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-12 max-w-2xl mx-auto text-center">
+
+    @if (submittedSuccessfully()) {
+    <i class="fas fa-check-circle text-6xl text-emerald-500 mb-6"></i>
+    <h3 class="font-primary text-3xl font-bold text-slate-800 mb-4">Obrigado!</h3>
+    <p class="text-lg text-slate-600 mb-8">Seu formulário {{ submittedFormType() }} foi enviado com sucesso. Entraremos em contato em breve!</p>
+    } @else {
+    <i class="fas fa-times-circle text-6xl text-red-500 mb-6"></i>
+    <h3 class="font-primary text-3xl font-bold text-slate-800 mb-4">Algo deu errado...</h3>
+    <p class="text-lg text-slate-600 mb-8">Não foi possível enviar seu formulário. Por favor, tente novamente mais tarde.</p>
+    }
+
+    <button (click)="goBack()" class="px-8 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold rounded-full transition-colors">
+      Voltar ao Início
+    </button>
+  </div>
+  }
+</section>
