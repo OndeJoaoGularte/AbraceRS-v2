@@ -1,0 +1,138 @@
+<div class="min-h-screen bg-linear-to-tr/longer from-primary to-secondary py-12 px-4 sm:px-6 flex items-center justify-center">
+  
+  <div class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden">
+    
+    <div class="bg-slate-50 border-b border-slate-100 p-8 text-center">
+      <h2 class="font-primary text-3xl font-extrabold text-dark m-0">
+        {{ isEditMode() ? "Editar Projeto" : "Cadastrar Novo Projeto" }}
+      </h2>
+    </div>
+
+    <div class="p-8 md:p-12">
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        
+        <div>
+          <label for="name" class="block text-sm font-bold text-slate-700 mb-2">Nome do Projeto</label>
+          <input type="text" id="name" formControlName="name" 
+                 class="w-full px-4 py-3 rounded-xl bg-slate-50 border transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+                 [ngClass]="isInvalid('name') ? 'border-red-400' : 'border-slate-200'">
+          @if(isInvalid('name')) { <p class="text-red-500 text-sm mt-1">O nome é obrigatório.</p> }
+        </div>
+
+        <div>
+          <label for="description" class="block text-sm font-bold text-slate-700 mb-2">Descrição do Projeto</label>
+          <textarea id="description" formControlName="description" rows="3" 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border transition-colors focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                    [ngClass]="isInvalid('description') ? 'border-red-400' : 'border-slate-200'"></textarea>
+          @if(isInvalid('description')) { <p class="text-red-500 text-sm mt-1">A descrição é obrigatória.</p> }
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="status" class="block text-sm font-bold text-slate-700 mb-2">Status</label>
+            <select id="status" formControlName="status" 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
+              <option [ngValue]="true">Ativo</option>
+              <option [ngValue]="false">Inativo</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="public" class="block text-sm font-bold text-slate-700 mb-2">Visibilidade</label>
+            <select id="public" formControlName="public" 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
+              <option [ngValue]="false">Apenas Administradores (Rascunho)</option>
+              <option [ngValue]="true">Público (Visível para todos)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="started_at" class="block text-sm font-bold text-slate-700 mb-2">Data de Início</label>
+            <input type="date" id="started_at" formControlName="started_at" 
+                   class="w-full px-4 py-3 rounded-xl bg-slate-50 border transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+                   [ngClass]="isInvalid('started_at') ? 'border-red-400' : 'border-slate-200'">
+            @if(isInvalid('started_at')) { <p class="text-red-500 text-sm mt-1">A data de início é obrigatória.</p> }
+          </div>
+
+          <div>
+            <label for="finished_at" class="block text-sm font-bold text-slate-700 mb-2">Data de Conclusão (Opcional)</label>
+            <input type="date" id="finished_at" formControlName="finished_at" 
+                   class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
+          
+          <div>
+            <label for="imageFile" class="block text-sm font-bold text-slate-700 mb-2">Imagem de Destaque</label>
+            <input type="file" id="imageFile" (change)="onFileSelected($event)" accept="image/png, image/jpeg"
+                   class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 cursor-pointer">
+            
+            @if (imagePreview()) {
+              <div class="mt-4">
+                <p class="text-xs font-bold text-slate-400 mb-2 uppercase tracking-wide">Pré-visualização</p>
+                <img [src]="imagePreview()" alt="Pré-visualização" class="w-full max-w-60 aspect-16/10 object-cover rounded-xl border border-slate-200 shadow-sm">
+              </div>
+            }
+          </div>
+
+          <div>
+            <label for="galleryFiles" class="block text-sm font-bold text-slate-700 mb-2">Imagens da Galeria (Múltiplas)</label>
+            <input type="file" id="galleryFiles" multiple (change)="onGalleryFilesSelected($event)" accept="image/png, image/jpeg"
+                   class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
+
+            @if (isEditMode() && existingGalleryImages().length > 0) {
+              <div class="mt-4">
+                <p class="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wide">Imagens Atuais na Galeria</p>
+                
+                <div class="flex flex-wrap gap-3">
+                  @for (image of existingGalleryImages(); track $index) {
+                    <div class="relative group">
+                      <img [src]="image.thumbnailImageSrc" [alt]="image.alt" class="w-16 h-16 object-cover rounded-xl border border-slate-200 shadow-sm">
+                      <button type="button" (click)="removeExistingGalleryImage(image, $index)" title="Remover Imagem"
+                              class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 hover:scale-110 shadow-md">
+                        <i class="fas fa-times text-xs"></i>
+                      </button>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-slate-100">
+          <label class="block text-sm font-bold text-slate-700 mb-2">Conteúdo Completo do Projeto</label>
+          <div class="quill-dark-theme rounded-xl overflow-hidden shadow-sm">
+            <quill-editor formControlName="content" 
+                          [modules]="editorModules"
+                          placeholder="Escreva os detalhes do projeto aqui..."
+                          [styles]="{'height': '400px'}">
+            </quill-editor>
+          </div>
+        </div>
+
+        <div class="flex flex-col-reverse sm:flex-row justify-end items-center gap-4 pt-8 mt-8 border-t border-slate-100">
+          <a routerLink="/como-atuamos" class="w-full sm:w-auto px-6 py-3 font-bold text-slate-500 hover:text-slate-800 transition-colors text-center">
+            Cancelar
+          </a>
+          <button type="submit" [disabled]="projectForm.invalid || isUploading()" 
+                  class="w-full sm:w-auto px-8 py-3 bg-primary hover:bg-[#02626d] text-white font-bold rounded-full transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+            
+            @if (isUploading()) {
+              <i class="fas fa-spinner fa-spin"></i>
+              <span>Salvando...</span>
+            } @else {
+              <i class="fas fa-save"></i>
+              <span>{{ isEditMode() ? 'Salvar Alterações' : 'Cadastrar Projeto' }}</span>
+            }
+            
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
