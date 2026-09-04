@@ -47,12 +47,11 @@ export class JunteFormComponent {
     });
   }
 
-  // Função interna para limpar o form e avisar o PAI para voltar
   goBack(): void {
     this.submittedSuccessfully.set(null);
     this.associateForm.reset({ person_type: 'PESSOA_FISICA' });
     this.volunteerForm.reset();
-    this.onBack.emit(); // <--- Grita pro componente pai!
+    this.onBack.emit();
   }
 
   onPersonTypeChange(type: string): void {

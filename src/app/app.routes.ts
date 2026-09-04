@@ -7,6 +7,8 @@ import { BlogComponent } from './features/blog/blog';
 import { JunteSeComponent } from './features/junte-se/junte-se';
 import { PostFormComponent } from './features/admin/pages/post-form/post-form';
 import { ProjFormComponent } from './features/admin/pages/proj-form/proj-form';
+import { ProjectDetailComponent } from './features/como-atuamos/project-detail/project-detail';
+import { PostDetailComponent } from './features/blog/post-detail/post-detail';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,23 +16,13 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'quem-somos', component: QuemSomosComponent },
   { path: 'como-atuamos', component: ComoAtuamosComponent },
-  {
-    path: 'admin/project/new',
-    component: ProjFormComponent,
-  },
-  {
-    path: 'admin/project/edit/:id',
-    component: ProjFormComponent,
-  },
+  { path: 'project/:id', component: ProjectDetailComponent },
+  { path: 'admin/project/new', component: ProjFormComponent },
+  { path: 'admin/project/edit/:id', component: ProjFormComponent },
   { path: 'blog', component: BlogComponent },
-  {
-    path: 'admin/post/new',
-    component: PostFormComponent,
-  },
-  {
-    path: 'admin/post/edit/:id',
-    component: PostFormComponent,
-  },
+  { path: 'post/:id', component: PostDetailComponent },
+  { path: 'admin/post/new', component: PostFormComponent },
+  { path: 'admin/post/edit/:id', component: PostFormComponent },
   { path: 'junte-se', component: JunteSeComponent },
   { path: '**', redirectTo: 'home' },
 ];

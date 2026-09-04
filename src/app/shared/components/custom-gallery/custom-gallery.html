@@ -1,0 +1,31 @@
+@if (images().length > 0) {
+  <div class="w-full max-w-2xl mx-auto flex flex-col gap-4">
+    
+    <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 group shadow-lg">
+      
+      <img [src]="activeImage()?.itemImageSrc" [alt]="activeImage()?.alt" 
+           class="w-full h-full object-cover transition-opacity duration-500">
+      
+      <button (click)="prev()" 
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black/50 text-white opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/80 backdrop-blur-sm">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <button (click)="next()" 
+              class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black/50 text-white opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/80 backdrop-blur-sm">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="flex gap-2 overflow-x-auto pb-2 snap-x scrollbar-hide justify-center">
+      @for (img of images(); track $index) {
+        <button (click)="setActive($index)" 
+                class="relative shrink-0 w-20 h-14 md:w-24 md:h-16 rounded-lg overflow-hidden border-2 transition-all snap-start"
+                [ngClass]="activeIndex() === $index ? 'border-primary opacity-100 shadow-md scale-105' : 'border-transparent opacity-50 hover:opacity-100'">
+          <img [src]="img.thumbnailImageSrc" [alt]="img.alt" class="w-full h-full object-cover">
+        </button>
+      }
+    </div>
+    
+  </div>
+}
