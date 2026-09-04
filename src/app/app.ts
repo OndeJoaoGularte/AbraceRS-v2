@@ -14,8 +14,6 @@ export class App implements OnInit {
   protected readonly title = signal('instituto-abrace');
 
   ngOnInit() {
-    injectSpeedInsights({
-      framework: 'angular',
-    });
+    injectSpeedInsights();
   }
 }
