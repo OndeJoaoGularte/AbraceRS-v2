@@ -35,6 +35,34 @@ export class SupportersService {
     return data as Supporter[];
   }
 
+  async getAllSupporters(): Promise<Supporter[]> {
+    const { data, error } = await this.supabase
+      .from(this.TABLE)
+      .select('*')
+      .order('tier', { ascending: true })
+      .order('name', { ascending: true });
+
+    if (error) {
+      console.error('Erro ao buscar todos os apoiadores:', error);
+      return [];
+    }
+    return data as Supporter[];
+  }
+
+  async getSupporterById(id: number): Promise<Supporter | null> {
+    const { data, error } = await this.supabase
+      .from(this.TABLE)
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) {
+      console.error('Erro ao buscar apoiador por ID:', error);
+      return null;
+    }
+    return data as Supporter;
+  }
+
   async createSupporter(supporter: Partial<Supporter>) {
     const { data, error } = await this.supabase.from(this.TABLE).insert([supporter]).select();
     if (error) console.error('Erro ao criar apoiador:', error);
@@ -52,7 +80,7 @@ export class SupportersService {
   }
 
   async deleteSupporter(id: number) {
-    const { error } = await this.supabase.from(this.TABLE).update({ status: false }).eq('id', id);
+    const { error } = await this.supabase.from(this.TABLE).update({ active: false }).eq('id', id);
     if (error) console.error('Erro ao fazer soft delete do apoiador:', error);
     return { error };
   }

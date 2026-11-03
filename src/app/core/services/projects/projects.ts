@@ -80,13 +80,18 @@ export class ProjectsService {
     return (data || []) as Project[];
   }
 
-  async getProjectById(id: number): Promise<Project | null> {
-    const { data, error } = await this.supabase
+  async getProjectById(id: number, isUserAdmin = false): Promise<Project | null> {
+    let query = this.supabase
       .from(this.TABLE)
       .select('*')
       .eq('id', id)
-      .eq('status', true)
-      .single();
+      .eq('status', true);
+
+    if (!isUserAdmin) {
+      query = query.eq('public', true);
+    }
+
+    const { data, error } = await query.single();
 
     if (error) {
       console.error('Erro ao buscar projeto pelo ID:', error);

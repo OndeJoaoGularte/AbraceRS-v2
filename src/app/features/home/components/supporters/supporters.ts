@@ -1,4 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth/auth';
 
 export interface Supporter {
   id?: number;
@@ -10,11 +12,13 @@ export interface Supporter {
 
 @Component({
   selector: 'app-supporters',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './supporters.html',
   styleUrl: './supporters.scss',
 })
 export class SupportersComponent {
+  authService = inject(AuthService);
+
   isLoading = input<boolean>(true);
   masters = input<Supporter[]>([]);
   standards = input<Supporter[]>([]);

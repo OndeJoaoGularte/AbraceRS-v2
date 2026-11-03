@@ -76,13 +76,18 @@ export class PostsService {
     return { data: (data || []) as Post[], count: count || 0 };
   }
 
-  async getPostById(id: number): Promise<Post | null> {
-    const { data, error } = await this.supabase
+  async getPostById(id: number, isUserAdmin = false): Promise<Post | null> {
+    let query = this.supabase
       .from(this.TABLE)
       .select('*')
       .eq('id', id)
-      .eq('status', true)
-      .single();
+      .eq('status', true);
+
+    if (!isUserAdmin) {
+      query = query.eq('public', true);
+    }
+
+    const { data, error } = await query.single();
 
     if (error) {
       console.error('Erro ao buscar postagem por ID:', error);

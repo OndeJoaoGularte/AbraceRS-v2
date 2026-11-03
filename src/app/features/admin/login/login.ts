@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth/auth';
 
@@ -15,13 +15,14 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   isLoading = signal<boolean>(false);
   errorMessage = signal<string | null>(null);
 
   loginForm = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
+    password: ['', [Validators.required]],
   });
 
   async onSubmit(): Promise<void> {
@@ -37,8 +38,9 @@ export class LoginComponent {
 
     try {
       await this.authService.signIn(email, password);
-      this.router.navigate(['/home']); 
-    } catch (error: any) {
+      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/home';
+      this.router.navigateByUrl(returnUrl);
+    } catch {
       this.errorMessage.set('Email ou senha inválidos. Tente novamente.');
     } finally {
       this.isLoading.set(false);

@@ -50,7 +50,7 @@ export class PostFormComponent implements OnInit {
   }
 
   async loadPostData(id: number): Promise<void> {
-    const post = await this.postsService.getPostById(id);
+    const post = await this.postsService.getPostById(id, true);
     
     if (post) {
       this.postForm.patchValue(post);

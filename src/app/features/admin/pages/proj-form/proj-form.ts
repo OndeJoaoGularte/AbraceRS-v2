@@ -71,7 +71,7 @@ export class ProjFormComponent implements OnInit {
   }
 
   async loadProjectData(id: number): Promise<void> {
-    const project = await this.projectsService.getProjectById(id);
+    const project = await this.projectsService.getProjectById(id, true);
     
     if (project) {
       project.started_at = project.started_at ? new Date(project.started_at).toISOString().split('T')[0] : '';

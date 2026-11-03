@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-1000 bg-light shadow-[0_2px_10px_rgba(0,0,0,0.1)] border-b border-primary" [class.scrolled]="isScrolled()">
+<header class="sticky top-0 z-1000 bg-light shadow-[0_2px_10px_rgba(0,0,0,0.1)] border-b border-primary overflow-visible" [class.scrolled]="isScrolled()">
 
     <!-- Barra Superior de Contatos -->
     <div class="bg-primary text-light overflow-hidden h-10 hidden lg:block transition-all duration-500 ease-in-out" [class.!h-0]="isScrolled()" [class.opacity-0]="isScrolled()">
@@ -36,8 +36,8 @@
     </div>
 
     <!-- Barra de Navegação -->
-    <nav class="h-20 lg:h-18">
-        <div class="max-w-248 mx-auto px-8 flex justify-between items-center h-full">
+    <nav class="h-20 lg:h-18 overflow-visible">
+        <div class="max-w-248 mx-auto px-8 flex justify-between items-center h-full overflow-visible">
 
             <!-- Logo -->
             <a class="transition-all duration-300 hover:opacity-80 hover:-translate-y-1 hover:scale-110" routerLink="/" (click)="closeMenu()">
@@ -45,7 +45,7 @@
             </a>
 
             <!-- Menu de Navegação -->
-            <div class="fixed top-20 left-0 w-full h-[calc(100vh-80px)] bg-light flex flex-col justify-center p-8 gap-8 opacity-0 invisible -translate-y-2 transition-all duration-300 lg:static lg:w-auto lg:h-auto lg:flex-row lg:bg-transparent lg:p-0 lg:opacity-100 lg:visible lg:translate-y-0" [class.!opacity-100]="isMenuOpen()" [class.!visible]="isMenuOpen()" [class.!translate-y-0]="isMenuOpen()">
+            <div class="fixed top-20 left-0 w-full h-[calc(100vh-80px)] bg-light flex flex-col justify-center p-8 gap-8 opacity-0 invisible -translate-y-2 transition-all duration-300 overflow-y-auto lg:overflow-visible lg:static lg:w-auto lg:h-auto lg:flex-row lg:items-center lg:bg-transparent lg:p-0 lg:opacity-100 lg:visible lg:translate-y-0 lg:gap-6" [class.!opacity-100]="isMenuOpen()" [class.!visible]="isMenuOpen()" [class.!translate-y-0]="isMenuOpen()">
 
                 <ul class="flex flex-col lg:flex-row items-center gap-8 list-none m-0 p-0 text-xl lg:text-base">
                     <li><a class="nav-link" routerLink="/home" routerLinkActive="active-link" (click)="closeMenu()">Home</a></li>
@@ -56,13 +56,45 @@
                 </ul>
 
                 <!-- Botões de Ação -->
-                <div class="flex flex-col lg:flex-row items-center gap-4 w-full lg:w-auto">
+                <div class="flex flex-col lg:flex-row items-center gap-3 w-full lg:w-auto shrink-0 overflow-visible">
                     <a [routerLink]="['/home']" fragment="donate" (click)="closeMenu()" class="inline-flex justify-center items-center text-center no-underline w-full max-w-75 lg:w-auto px-6 py-3 rounded-full font-bold cursor-pointer transition-all duration-300 border-none bg-accent text-dark hover:bg-[color-mix(in_srgb,var(--color-accent),gray_15%)] hover:-translate-y-1 hover:scale-110 hover:shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
                         Doar
                     </a>
 
                     @if (authService.isLoggedIn()) {
-                    <button (click)="onSignOut()" class="w-full max-w-75 lg:w-auto px-6 py-3 rounded-full font-bold cursor-pointer transition-all duration-300 bg-transparent text-secondary border-2 border-secondary hover:bg-secondary hover:text-light">Sair</button>
+                    <!-- Mobile: links admin em lista -->
+                    <div class="flex flex-col items-center gap-3 w-full max-w-75 lg:hidden">
+                        <a routerLink="/admin/supporters" (click)="closeMenu()" class="w-full text-center px-6 py-3 rounded-full font-bold no-underline transition-all duration-300 bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-light">Apoiadores</a>
+                        <a routerLink="/admin/team" (click)="closeMenu()" class="w-full text-center px-6 py-3 rounded-full font-bold no-underline transition-all duration-300 bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-light">Equipe</a>
+                        <a routerLink="/admin/post/new" (click)="closeMenu()" class="w-full text-center px-6 py-3 rounded-full font-bold no-underline transition-all duration-300 bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-light">Nova Postagem</a>
+                        <a routerLink="/admin/project/new" (click)="closeMenu()" class="w-full text-center px-6 py-3 rounded-full font-bold no-underline transition-all duration-300 bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-light">Novo Projeto</a>
+                        <button type="button" (click)="onSignOut()" class="w-full px-6 py-3 rounded-full font-bold cursor-pointer transition-all duration-300 bg-transparent text-secondary border-2 border-secondary hover:bg-secondary hover:text-light">Sair</button>
+                    </div>
+
+                    <!-- Desktop: dropdown compacto + Sair -->
+                    <div class="hidden lg:flex items-center gap-3 overflow-visible">
+                        <div class="relative overflow-visible" (click)="keepAdminMenuOpen($event)">
+                            <button type="button"
+                                    (click)="toggleAdminMenu($event)"
+                                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold cursor-pointer transition-all duration-300 bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-light whitespace-nowrap"
+                                    [attr.aria-expanded]="isAdminMenuOpen()">
+                                Admin
+                                <i class="fas fa-chevron-down text-[10px] transition-transform duration-200" [class.rotate-180]="isAdminMenuOpen()"></i>
+                            </button>
+
+                            @if (isAdminMenuOpen()) {
+                            <div class="absolute right-0 top-full mt-2 min-w-48 bg-light border border-primary/20 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.12)] z-1100 py-1"
+                                 role="menu">
+                                <a routerLink="/admin/supporters" (click)="closeMenu()" class="block px-4 py-2.5 text-sm font-semibold text-dark no-underline hover:bg-primary/10 hover:text-primary transition-colors">Apoiadores</a>
+                                <a routerLink="/admin/team" (click)="closeMenu()" class="block px-4 py-2.5 text-sm font-semibold text-dark no-underline hover:bg-primary/10 hover:text-primary transition-colors">Equipe</a>
+                                <a routerLink="/admin/post/new" (click)="closeMenu()" class="block px-4 py-2.5 text-sm font-semibold text-dark no-underline hover:bg-primary/10 hover:text-primary transition-colors">Nova Postagem</a>
+                                <a routerLink="/admin/project/new" (click)="closeMenu()" class="block px-4 py-2.5 text-sm font-semibold text-dark no-underline hover:bg-primary/10 hover:text-primary transition-colors">Novo Projeto</a>
+                            </div>
+                            }
+                        </div>
+
+                        <button type="button" (click)="onSignOut()" class="px-5 py-2.5 rounded-full font-bold cursor-pointer transition-all duration-300 bg-transparent text-secondary border-2 border-secondary hover:bg-secondary hover:text-light whitespace-nowrap">Sair</button>
+                    </div>
                     }
                 </div>
             </div>

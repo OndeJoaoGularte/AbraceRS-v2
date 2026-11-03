@@ -1,6 +1,15 @@
 <section class="py-12 bg-light text-center">
   <div class="max-w-250 mx-auto px-6">
 
+    @if (authService.isLoggedIn()) {
+    <div class="mb-8">
+      <a routerLink="/admin/supporters"
+         class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-light font-bold py-3 px-6 rounded-full transition-all duration-300 shadow-md">
+        <i class="fas fa-handshake"></i> Gerenciar Apoiadores
+      </a>
+    </div>
+    }
+
     <!-- Skeleton Loaders -->
     @if (isLoading()) {
     <!--<h4 class="font-primary font-bold text-secondary/80 uppercase tracking-widest text-lg m-0 mb-8">

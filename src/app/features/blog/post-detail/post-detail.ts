@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostsService } from '../../../core/services/posts/posts';
+import { AuthService } from '../../../core/services/auth/auth';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CommonModule, Location } from '@angular/common';
 import { CustomGalleryComponent } from '../../../shared/components/custom-gallery/custom-gallery';
@@ -14,6 +15,7 @@ import { CustomGalleryComponent } from '../../../shared/components/custom-galler
 export class PostDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private postsService = inject(PostsService);
+  private authService = inject(AuthService);
   private sanitizer = inject(DomSanitizer);
   private location = inject(Location);
 
@@ -23,10 +25,14 @@ export class PostDetailComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const id = this.route.snapshot.paramMap.get('id');
-    
+
     if (id) {
-      const fetchedPost = await this.postsService.getPostById(Number(id));
-      
+      await this.authService.whenReady();
+      const fetchedPost = await this.postsService.getPostById(
+        Number(id),
+        this.authService.isLoggedIn(),
+      );
+
       if (fetchedPost) {
         this.post.set(fetchedPost);
 
@@ -36,7 +42,7 @@ export class PostDetailComponent implements OnInit {
         }
       }
     }
-    
+
     this.isLoading.set(false);
   }
 
