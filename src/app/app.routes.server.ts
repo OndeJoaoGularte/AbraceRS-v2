@@ -14,7 +14,10 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'admin/team', renderMode: RenderMode.Client },
   { path: 'admin/team/new', renderMode: RenderMode.Client },
   { path: 'admin/team/edit/:id', renderMode: RenderMode.Client },
-  { path: 'login', renderMode: RenderMode.Client },
+  { path: 'admin/highlights', renderMode: RenderMode.Client },
+  { path: 'admin/highlight/new', renderMode: RenderMode.Client },
+  { path: 'admin/highlight/edit/:id', renderMode: RenderMode.Client },
+  { path: 'login', renderMode: RenderMode.Prerender },
 
   { path: '**', renderMode: RenderMode.Prerender },
 ];

@@ -64,6 +64,7 @@
                     @if (authService.isLoggedIn()) {
                     <!-- Mobile: links admin em lista -->
                     <div class="flex flex-col items-center gap-3 w-full max-w-75 lg:hidden">
+                        <a routerLink="/admin/highlights" (click)="closeMenu()" class="w-full text-center px-6 py-3 rounded-full font-bold no-underline transition-all duration-300 bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-light">Destaques</a>
                         <a routerLink="/admin/supporters" (click)="closeMenu()" class="w-full text-center px-6 py-3 rounded-full font-bold no-underline transition-all duration-300 bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-light">Apoiadores</a>
                         <a routerLink="/admin/team" (click)="closeMenu()" class="w-full text-center px-6 py-3 rounded-full font-bold no-underline transition-all duration-300 bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-light">Equipe</a>
                         <a routerLink="/admin/post/new" (click)="closeMenu()" class="w-full text-center px-6 py-3 rounded-full font-bold no-underline transition-all duration-300 bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-light">Nova Postagem</a>
@@ -85,6 +86,7 @@
                             @if (isAdminMenuOpen()) {
                             <div class="absolute right-0 top-full mt-2 min-w-48 bg-light border border-primary/20 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.12)] z-1100 py-1"
                                  role="menu">
+                                <a routerLink="/admin/highlights" (click)="closeMenu()" class="block px-4 py-2.5 text-sm font-semibold text-dark no-underline hover:bg-primary/10 hover:text-primary transition-colors">Destaques</a>
                                 <a routerLink="/admin/supporters" (click)="closeMenu()" class="block px-4 py-2.5 text-sm font-semibold text-dark no-underline hover:bg-primary/10 hover:text-primary transition-colors">Apoiadores</a>
                                 <a routerLink="/admin/team" (click)="closeMenu()" class="block px-4 py-2.5 text-sm font-semibold text-dark no-underline hover:bg-primary/10 hover:text-primary transition-colors">Equipe</a>
                                 <a routerLink="/admin/post/new" (click)="closeMenu()" class="block px-4 py-2.5 text-sm font-semibold text-dark no-underline hover:bg-primary/10 hover:text-primary transition-colors">Nova Postagem</a>

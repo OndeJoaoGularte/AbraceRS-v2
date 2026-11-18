@@ -13,6 +13,8 @@ import { SupportersListComponent } from './features/admin/pages/supporters-list/
 import { SupporterFormComponent } from './features/admin/pages/supporter-form/supporter-form';
 import { TeamListComponent } from './features/admin/pages/team-list/team-list';
 import { TeamFormComponent } from './features/admin/pages/team-form/team-form';
+import { HighlightsListComponent } from './features/admin/pages/highlights-list/highlights-list';
+import { HighlightFormComponent } from './features/admin/pages/highlight-form/highlight-form';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
@@ -74,6 +76,21 @@ export const routes: Routes = [
   {
     path: 'admin/team/edit/:id',
     component: TeamFormComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'admin/highlights',
+    component: HighlightsListComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'admin/highlight/new',
+    component: HighlightFormComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'admin/highlight/edit/:id',
+    component: HighlightFormComponent,
     canActivate: [authGuard],
   },
 

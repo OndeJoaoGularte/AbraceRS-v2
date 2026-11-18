@@ -1,0 +1,86 @@
+<section class="min-h-screen bg-linear-to-tr/longer from-primary to-secondary py-12 px-4 sm:px-6">
+  <div class="w-full max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+    <div class="bg-slate-50 border-b border-slate-100 p-6 md:p-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <h2 class="font-primary text-3xl font-extrabold text-dark m-0">Destaques</h2>
+        <p class="text-slate-500 mt-1 mb-0">Avisos exibidos logo abaixo do hero na home.</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a routerLink="/home" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 leading-none border-2 border-slate-200 text-slate-600 font-bold rounded-full hover:bg-slate-50 transition-colors">
+          <i class="fas fa-arrow-left text-sm leading-none"></i>
+          <span class="leading-none">Voltar</span>
+        </a>
+        <a routerLink="/admin/highlight/new" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 leading-none bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-full transition-colors shadow-md">
+          <i class="fas fa-plus text-sm leading-none"></i>
+          <span class="leading-none">Novo Destaque</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="p-6 md:p-8">
+      @if (isLoading()) {
+        <div class="space-y-4">
+          @for (item of [1,2,3]; track item) {
+            <div class="h-28 bg-slate-100 animate-pulse rounded-2xl"></div>
+          }
+        </div>
+      } @else if (highlights().length === 0) {
+        <div class="text-center py-16 text-slate-500">
+          <i class="fas fa-bullhorn text-4xl mb-4 opacity-40"></i>
+          <p class="mb-6">Nenhum destaque cadastrado ainda.</p>
+          <a routerLink="/admin/highlight/new" class="inline-flex items-center px-6 py-3 bg-primary text-white font-bold rounded-full">
+            Cadastrar primeiro destaque
+          </a>
+        </div>
+      } @else {
+        <div class="space-y-4">
+          @for (highlight of highlights(); track highlight.id) {
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 border border-slate-200 rounded-2xl hover:bg-slate-50 transition-colors"
+                 [class.opacity-50]="!highlight.active">
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <h3 class="font-bold text-lg text-slate-800 m-0">{{ highlight.title }}</h3>
+                  <span class="inline-block px-2 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide"
+                        [class.bg-emerald-100]="highlight.active"
+                        [class.text-emerald-700]="highlight.active"
+                        [class.bg-slate-100]="!highlight.active"
+                        [class.text-slate-600]="!highlight.active">
+                    {{ highlight.active ? 'Ativo' : 'Inativo' }}
+                  </span>
+                  <span class="inline-block px-2 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-600">
+                    Ordem {{ highlight.sort_order }}
+                  </span>
+                </div>
+                @if (highlight.summary) {
+                  <p class="text-sm text-slate-500 m-0 mt-1 line-clamp-2">{{ highlight.summary }}</p>
+                }
+                <p class="text-xs text-slate-400 m-0 mt-2">
+                  CTA: {{ highlight.cta_label }}
+                  @if (highlight.file_url) { · PDF }
+                  @if (highlight.link_url) { · Link }
+                </p>
+              </div>
+
+              <div class="flex flex-wrap gap-2 shrink-0">
+                <button type="button" (click)="toggleActive(highlight, $event)"
+                        class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-lg transition-all">
+                  <i class="fas" [class.fa-eye-slash]="highlight.active" [class.fa-eye]="!highlight.active"></i>
+                  {{ highlight.active ? 'Desativar' : 'Ativar' }}
+                </button>
+                <a [routerLink]="['/admin/highlight/edit', highlight.id]"
+                   class="px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-semibold rounded-lg transition-all">
+                  <i class="fas fa-pen mr-1"></i> Editar
+                </a>
+                <button type="button" (click)="deleteHighlight(highlight.id, $event)"
+                        class="px-4 py-2 bg-secondary/10 hover:bg-secondary/20 text-secondary text-sm font-semibold rounded-lg transition-all">
+                  <i class="fas fa-trash mr-1"></i> Remover
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

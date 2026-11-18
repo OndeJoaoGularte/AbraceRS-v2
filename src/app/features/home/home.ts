@@ -5,9 +5,11 @@ import { RouterModule } from '@angular/router';
 import { ProjectsService } from '../../core/services/projects/projects';
 import { PostsService } from '../../core/services/posts/posts';
 import { SupportersService } from '../../core/services/supporters/supporters';
+import { Highlight, HighlightsService } from '../../core/services/highlights/highlights';
 import { AuthService } from '../../core/services/auth/auth';
 
 import { HeroComponent } from './components/hero/hero';
+import { HighlightsComponent } from './components/highlights/highlights';
 import { AboutComponent } from './components/about/about';
 import { ProjectsComponent } from './components/projects/projects';
 import { AssociateComponent } from './components/associate/associate';
@@ -21,6 +23,7 @@ import { PostsComponent } from './components/posts/posts';
     CommonModule,
     RouterModule,
     HeroComponent,
+    HighlightsComponent,
     AboutComponent,
     ProjectsComponent,
     AssociateComponent,
@@ -35,10 +38,12 @@ export class HomeComponent implements OnInit {
   private projectsService = inject(ProjectsService);
   private postsService = inject(PostsService);
   private supportersService = inject(SupportersService);
+  private highlightsService = inject(HighlightsService);
   private authService = inject(AuthService);
 
   masterSupporters = signal<Supporter[]>([]);
   standardSupporters = signal<Supporter[]>([]);
+  activeHighlights = signal<Highlight[]>([]);
 
   isLoading = signal<boolean>(true);
   featuredProject = signal<any>(null);
@@ -57,9 +62,10 @@ export class HomeComponent implements OnInit {
   async loadInitialData(): Promise<void> {
     this.isLoading.set(true);
 
-    const [projects, supporters] = await Promise.all([
+    const [projects, supporters, highlights] = await Promise.all([
       this.projectsService.getLatestProjects(3),
       this.supportersService.getActiveSupporters(),
+      this.highlightsService.getActiveHighlights(),
       this.loadMorePosts(),
     ]);
 
@@ -70,6 +76,7 @@ export class HomeComponent implements OnInit {
 
     this.masterSupporters.set(supporters.filter((s) => s.tier === 'master'));
     this.standardSupporters.set(supporters.filter((s) => s.tier === 'standard'));
+    this.activeHighlights.set(highlights);
 
     this.isLoading.set(false);
   }

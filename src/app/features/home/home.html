@@ -3,6 +3,9 @@
   <!-- Seção Banner -->
   <app-hero></app-hero>
 
+  <!-- Avisos / Destaques -->
+  <app-highlights [isLoading]="isLoading()" [highlights]="activeHighlights()"></app-highlights>
+
   <!-- Seção de Introdução -->
   <section class="py-12">
     <div class="max-w-300 mx-auto px-6 text-center">
